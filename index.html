@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tao Yuhao</title>
-  <meta name="author" content="Tao Yuhao" />
+  <title>TAO Yuhao</title>
+  <meta name="author" content="TAO Yuhao" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <!-- favicon & main stylesheet -->
@@ -62,17 +62,18 @@
     a{
       color: var(--theme-color-light);
       text-decoration: underline transparent 2px;
+      text-underline-offset: 2px;
       transition: color .2s, text-decoration-color .2s;
     }
     a:hover{
       color: var(--theme-color);
-      text-decoration: underline;
+      text-decoration: underline 2px;
+      text-underline-offset: 2px;
       text-decoration-color: var(--theme-color);
     }
 
     h2 {
       margin: 0;
-      font-weight: normal;
       font-family: var(--font-head);
       font-size: 1.7rem;
       font-weight:600;
@@ -80,7 +81,6 @@
 
     /* ======= navigation bar ======= */
     #top-nav {
-      /*position: left;*/
       top: 0; left: 0; right: 0;
       height: 56px;
       padding: 0 24px;
@@ -92,32 +92,12 @@
       z-index: 1000;
     }
 
-    #top-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-
-    .nav-link {
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      color:#4b5563;
-      opacity:.85;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    .nav-link:hover { color: #00254d; }
-
     /* underline indicator for current section */
     .nav-link.active::after,
     .nav-link:hover::after {
       content: "";
       position: absolute;
-      left: 0; right: 0; bottom: -6px;
+      left: 0; right: 0; bottom: -8px;
       height: 2px;
       background: currentColor;
       border-radius: 1px;
@@ -171,8 +151,16 @@
       margin-top: 1.5rem;
       font-size: 0.95rem;
     }
-    .contact a { text-decoration: none; color: var(--theme-color); }
-    .contact a:hover { text-decoration: underline; }
+    .contact a { 
+      text-decoration: underline transparent 2px;
+      text-underline-offset: 2px;
+      transition: color .2s, text-decoration-color .2s; 
+    }
+    .contact a:hover { 
+      text-decoration: underline 2px;
+      text-underline-offset: 2px;
+      text-decoration-color: var(--theme-color);
+    }
 
     /* ========= 纵向 6×1 卡片列表 ========= */
     .project-list{
@@ -306,7 +294,8 @@
       mix-blend-mode:multiply;
     }
     .hero::after{content:"";position:absolute;inset:0;
-      background:rgba(0,0,0,.35);}          /* 遮罩 */
+      background:rgba(0,0,0,.35);
+      text-decoration:none}          /* 遮罩 */
     .hero-inner{position:relative;z-index:1}
     .hero h1{font-family:var(--font-head);font-size:clamp(3rem,6vw,5rem);margin:0;font-weight:600;
       color: #F3F2E3;                               /* 主文字 */
@@ -315,7 +304,11 @@
       color: #F3F2E3;                               /* 主文字 */
       text-shadow: 0 0 8px rgba(243, 242, 227, .25);/* 疏影（可调强度/模糊半径） */}
     .scroll-down{display:inline-block;margin-top:2rem;font-size:1.5rem;color:#fff;
-      animation:scrollHint 1.2s infinite;}
+      animation:scrollHint 1.2s infinite;text-decoration:none;}
+    .scroll-down:hover{
+      text-decoration:none;      /* 悬停时仍然不要线 */
+      color:var(--theme-color);  /* 如果想有颜色高亮，可保留；不要高亮就删掉这一行 */
+}
     @keyframes scrollHint{0%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
     .timeline{position:relative;margin:0;padding:0 0 0 2rem;list-style:none;padding-left:3.5rem;}
@@ -372,19 +365,25 @@
       display:flex;justify-content:center;
       gap:2.5rem; margin:0;padding:0;list-style:none;
       font-variant:all-small-caps;letter-spacing:.04em;
+      flex-wrap: wrap;
     }
 
     /* 链接：常态灰色，hover/active 高亮 */
     .nav-link{
       position:relative;
-      color:#4b5563;font-size:.92rem;font-weight:500;
-      text-decoration:none;opacity:.85;
+      color:#4b5563;
+      font-size:.92rem;
+      font-weight:500;
+      text-decoration:none;
+      opacity:.85;
       transition:color .25s, opacity .25s;
     }
     .nav-link:hover,
     .nav-link.active{
       color:var(--theme-color);
-      opacity:1;font-weight:600;
+      opacity:1;
+      font-weight:600;
+      text-decoration: none;
     }
 
     /* ✨ 细长滑动下划线 */
@@ -487,7 +486,8 @@
 
     .pub-card h4 a:hover{
       color: var(--theme-color);       /* 悬停时用主色轻微点亮 */
-      text-decoration: underline;      /* 提醒可点击，极简 */
+      text-decoration: underline 2px;      /* 提醒可点击，极简 */
+      text-underline-offset: 2px;
     }
 
     /* 深色模式下稍微提亮标题 */
@@ -503,7 +503,7 @@
   <!-- === hero === -->
   <header class="hero">
     <div class="hero-inner">
-      <h1>Tao Yuhao</h1>
+      <h1>TAO Yuhao</h1>
       <p class="tagline">Medical Devices & Robotics</p>
       <a href="#profile" class="scroll-down">▼</a>
     </div>
@@ -579,8 +579,9 @@
       <li>
         <span class="year">2023</span>
         <div class="pub-card">
+          <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">
           <h4>Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained 
-            structure at cryogenic temperature</h4>
+            structure at cryogenic temperature</h4></a>
           <p><strong>Frontiers in Materials</strong> · <em>Yuhao Tao, Wenqiang Cheng, Wei Wang</em></p>
 
           <!-- 复制 BibTeX 按钮 -->
@@ -729,32 +730,15 @@
     <article class="project cfd">
       
       <!-- 图片 / 视频预览区 -->
-      <div class="thumb" id="cfd_thumb">
+      <div class="thumb" id="thumb_cfd">
         <!-- 封面静态图 -->
         <img src="images/cfd_cover.png"
-            alt="Patch‑bot cover"
             width="250"
             class="cover">
 
         
         <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
-        <video id="cfd_video" width="250" muted loop preload="metadata">
-          <script>
-            const thumb = document.getElementById('cfd_thumb');
-            const video = document.getElementById('cfd_video');
-            
-            thumb.addEventListener('mouseenter', () => {
-              thumb.classList.add('hovering');  // 视频淡入，封面淡出
-              video.currentTime = 0;            // 从头播放
-              video.play();
-            });
-            
-            thumb.addEventListener('mouseleave', () => {
-              thumb.classList.remove('hovering');
-              video.pause();
-              video.currentTime = 0;            // 可选：离开后复位到第 0 帧
-            });
-            </script>
+        <video id="video_cfd" width="250" muted loop preload="metadata">
           <source src="images/cfd_cover.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -895,8 +879,23 @@
 
     <!-- ========== Comp. Solid Mech (6) ========== -->
     <article class="project csm">
-      <!-- 左侧缩略图 -->
-      <img src="images/bug.jpg" width="250" class="proj-img">
+
+      <!-- 图片 / 视频预览区 -->
+      <div class="thumb" id="thumb_pf">
+        <!-- 封面静态图 -->
+        <img src="images/pfsim_cover.png"
+            width="250"
+            class="cover">
+
+        
+        <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
+        <video id="video_pf" width="250" muted loop preload="metadata">
+          <source src="images/pfsim_cover.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+          
+          
+      </div>
     
       <!-- 右侧文字区 -->
       <div class="proj-content">
@@ -933,7 +932,7 @@
         <p></p>
         <a href="">project page</a>
         /
-        <a href="">code</a>
+        <a href="https://github.com/Er1koenig/PF-Sintering/tree/main">code</a>
       </div>
     </article>
   </div>
@@ -1029,6 +1028,23 @@
   }
   window.addEventListener('scroll', onScroll);
   onScroll();
+
+  // 找到页面里所有 .thumb 容器
+  document.querySelectorAll('.thumb').forEach(thumb => {
+    const video = thumb.querySelector('video');
+
+    thumb.addEventListener('mouseenter', () => {
+      thumb.classList.add('hovering');
+      video.currentTime = 0;
+      video.play();
+    });
+
+    thumb.addEventListener('mouseleave', () => {
+      thumb.classList.remove('hovering');
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
 
 </script>
 
