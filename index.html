@@ -493,6 +493,27 @@
     /* 深色模式下稍微提亮标题 */
     :root.dark .pub-card h4{color:#f0f0f0;}
 
+    /* —— John Barron 模板致谢 —— */
+    .credit{
+      position: fixed;            /* 固定在视口，始终可见 */
+      bottom: 12px;               /* 距离底边 & 右边留点空 */
+      right: 16px;
+      font-size: .7rem;
+      color: #666;
+      opacity: .5;
+      z-index: 2000;              /* 保证压在最上层 */
+    }
+    .credit a{
+      font-size: .7rem;
+      color: inherit;             /* 统一灰色；鼠标悬停时再变蓝 */
+      text-decoration: none;
+      border-bottom: 1px dotted currentColor;
+    }
+    .credit a:hover{
+      color: var(--theme-color);  /* 你的主题色 */
+    }
+    :root.dark .credit{ color:#bbb; }  /* 暗色模式走浅灰 */
+
   </style>
 </head>
 
@@ -662,7 +683,7 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/origamibot/">project page</a>
         /
         <a href="">paper</a>
       </div>
@@ -719,7 +740,7 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/patchbot/">project page</a>
         /
         <a href="">paper</a>
       </div>
@@ -783,7 +804,7 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/droplet-dynamics/">project page</a>
         /
         <a href="data/bachelor_thesis.pdf">bachelor thesis</a>
       </div>
@@ -794,7 +815,7 @@
     <!-- ========== Comp. Solid Mech (4) ========== -->
     <article class="project csm">
       <!-- 左侧缩略图 -->
-      <img src="images/bug.jpg" width=250 class="proj-img">
+      <img src="images/mdsim_cover.png" width=250 class="proj-img">
     
       <!-- 右侧文字区 -->
       <div class="proj-content">
@@ -829,16 +850,16 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/MD-sim/">project page</a>
         /
-        <a href="">paper</a>
+        <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">paper</a>
       </div>
     </article>
 
     <!-- ========== Comp. Solid Mech (5) ========== -->
     <article class="project csm">
       <!-- 左侧缩略图 -->
-      <img src="images/bug.jpg" width=250 class="proj-img">
+      <img src="images/fesim_cover.png" width=250 class="proj-img">
     
       <!-- 右侧文字区 -->
       <div class="proj-content">
@@ -873,7 +894,7 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/FE-Sintering/">project page</a>
       </div>
     </article>
 
@@ -930,9 +951,9 @@
 
         <!-- Project page, paper -->
         <p></p>
-        <a href="">project page</a>
+        <a href="https://er1koenig.github.io/PF-Sintering/">project page</a>
         /
-        <a href="https://github.com/Er1koenig/PF-Sintering/tree/main">code</a>
+        <a href="https://github.com/Er1koenig/PF-Sintering/blob/main/original_script">code</a>
       </div>
     </article>
   </div>
@@ -1047,6 +1068,13 @@
   });
 
 </script>
+
+<div class="credit">
+  Thanks for the 
+  <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">
+    excellent template
+  </a>
+</div>
 
 </body>
 </html>
