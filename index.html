@@ -1,1079 +1,913 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>TAO Yuhao</title>
-  <meta name="author" content="TAO Yuhao" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <!-- favicon & main stylesheet -->
-  <link rel="shortcut icon" href="images/favicon/tau_icon.jpg" type="image/x-icon" />
-  <link rel="stylesheet" href="stylesheet.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>TAO Yuhao</title>
+    <meta name="author" content="TAO Yuhao" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Fonts：Inter & Lora -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- favicon & main stylesheet -->
+    <link rel="shortcut icon" href="images/favicon/tau_icon.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="stylesheet.css" />
 
-  <!-- icon font (Font Awesome 6 free) → https://fontawesome.com -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-RhCeKEeyiLdZ28yY7mVt8XzfnOz2bNqsTP7PvpB3qHwD6PPV6cO9HcL7JQhN4F5m2dlHtb1zGuUHmXn4b8vLAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- quick visual tune‑ups that sit on top of your existing stylesheet -->
-  <style>
-    :root{
-      --font-base: "Inter", "Lato", "Helvetica Neue", Arial, sans-serif;
-      --font-head: "Lora", Georgia, serif;
-      /* 🎨 Oxford Blue 体系 */
-      --theme-color: #0b2f5b;        /* 主色（深） */
-      --theme-color-light: #476d96;  /* 60 % tint，用作普通链接 */
-      --theme-color-subtle: #e2e8f4; /* 10 % tint，用作 chip 背景 */
-      --clr-surface:#fafbfd;         /* 卡片表面 */
-      --clr-neutral:#243447;         /* 正文默认色 */
-    }
+    <!-- Google Fonts：Inter & Lora -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
-    /* enable smooth scrolling for anchor navigation */
-    html {
-      scroll-behavior: smooth; /* <-- new, makes clicks glide instead of jump */
-    }
+    <!-- icon font (Font Awesome 6 free) → https://fontawesome.com -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-RhCeKEeyiLdZ28yY7mVt8XzfnOz2bNqsTP7PvpB3qHwD6PPV6cO9HcL7JQhN4F5m2dlHtb1zGuUHmXn4b8vLAw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    .section-title{
-      position:relative;
-      font-size:clamp(1.8rem,3vw,2.4rem);
-      margin:3.2rem 0 1.2rem;
-    }
-    .section-title::after{
-      content:"";
-      position:absolute;
-      left:0; bottom:-.4rem;
-      width:3rem; height:3px;
-      background:var(--theme-color);
-      border-radius:1px;
-    }
-
-    /* smooth typography */
-    body {
-      font-family: var(--font-base);
-      line-height: 1.6;
-      color: var(--clr-neutral);
-      background: #ffffff;   /* 若想比现在更亮，可留原样 */
-      margin: 0;
-      padding-top: 56px; /* keep content below fixed nav */
-      font-weight:500;
-    }
-
-    a{
-      color: var(--theme-color-light);
-      text-decoration: underline transparent 2px;
-      text-underline-offset: 2px;
-      transition: color .2s, text-decoration-color .2s;
-    }
-    a:hover{
-      color: var(--theme-color);
-      text-decoration: underline 2px;
-      text-underline-offset: 2px;
-      text-decoration-color: var(--theme-color);
-    }
-
-    h2 {
-      margin: 0;
-      font-family: var(--font-head);
-      font-size: 1.7rem;
-      font-weight:600;
-    }
-
-    /* ======= navigation bar ======= */
-    #top-nav {
-      top: 0; left: 0; right: 0;
-      height: 56px;
-      padding: 0 24px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px) saturate(140%);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-      display: flex;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    /* underline indicator for current section */
-    .nav-link.active::after,
-    .nav-link:hover::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: -8px;
-      height: 2px;
-      background: currentColor;
-      border-radius: 1px;
-    }
-
-    /* tiny inline icons – keep them aligned with text */
-    .inline-icon {
-      height: 1em;
-      width: auto;
-      vertical-align: -0.15em;
-      margin-right: 0.25em;
-    }
-
-    .icon-img {
-      height: 1.25rem;        /* bigger inline img */
-      width: auto;
-      vertical-align: -0.2em;
-      margin-right: 0.32em;
-    }
-
-    /* simple wrapper for main content */
-    .container {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* make anchor targets land below fixed nav (covers any h2 that has an id) */
-    section[id] { scroll-margin-top: 2cm; }
-
-    .name {
-      font-family: var(--font-head);
-      font-size: 2.2rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    /* responsive image w/ soft‑corner mask */
-    .profile-photo {
-      width: 100%;
-      max-width: 100%;
-      object-fit: cover;
-      border-radius: 12%;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-
-    /* contact links */
-    .contact {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-    }
-    .contact a { 
-      text-decoration: underline transparent 2px;
-      text-underline-offset: 2px;
-      transition: color .2s, text-decoration-color .2s; 
-    }
-    .contact a:hover { 
-      text-decoration: underline 2px;
-      text-underline-offset: 2px;
-      text-decoration-color: var(--theme-color);
-    }
-
-    /* ========= 纵向 6×1 卡片列表 ========= */
-    .project-list{
-      display:flex;
-      flex-direction:column;
-      gap:1.6rem;                   /* 卡片间距 */
-      margin-top:2.2rem;
-    }
-
-    /* 预览区域整体 */
-    .thumb{
-      position: relative;
-      width: 250;          /* 与图片/视频一致 */
-      cursor: pointer;       /* 悬停时鼠标变手形，可省略 */
-    }
-
-    /* 静态封面图 */
-    .thumb .cover{
-      display: block;
-      width: 250;
-    }
-
-    /* 预览视频：绝对定位覆盖在封面图上，初始透明不可见 */
-    .thumb video{
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0;
-      pointer-events: none;      /* 不抢鼠标事件 */
-      transition: opacity .25s;
-    }
-
-    /* 悬停时让视频显现，封面图隐藏 */
-    .thumb.hovering video{ opacity: 1; }
-    .thumb.hovering .cover{ opacity: 0; }
-        .project{
-          border-left:4px solid var(--theme-color);  /* 视觉锚点 */
-          border-radius:10px;
-          background: var(--clr-surface);
-          box-shadow:0 1px 3px rgba(0,0,0,.05), 0 4px 8px rgba(0,0,0,.04);
-          transition: transform .25s ease, box-shadow .25s ease;
-
-          display: flex;
-          align-items: flex-start;            /* 顶对齐即可 */
-          gap: 1rem;   
-        }
-
-    .project.proj-img {       /* 左侧图片 */
-      flex: 0 0 20%;                      /* 固定 20 % */
-      max-width: 40vw;                     /* 防止被别的宽度规则覆盖 */
-      width: 250;
-      height: auto;                       /* 保持纵横比 */
-      object-fit: cover;
-    }
-
-    .project.proj-content {   /* 右侧文字 */
-      flex: 1 1 80%;
-    }
-
-    .project:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,.1);
-    }
-
-    .project::before{
-      display:none;
-    }
-    .project{ position:relative; 
-      padding: 0.3rem 0.5rem 0.3rem 1.2rem;} /* 留空间给圆点 */
-
-    .project h3{ 
-      font-family:var(--font-head); margin:0 0 .4rem; font-size:1.15rem; 
-      font-variant:small-caps;letter-spacing:.03em;font-weight:600;
-    }
-    .summary{ margin:0 0 .65rem; }
-
-    /* “Highlights:” 本身 */
-    .highlight-title{
-      font-weight: 600;
-      white-space: nowrap;        /* 避免半截换行 */
-    }
-
-    /* 列表去掉默认样式，横向排版 */
-    .highlights{
-      gap:.4rem .6rem;
-    }
-    .highlights li{
-      background:var(--theme-color-subtle);
-      border-radius:9999px;
-      padding:.1rem .6rem;
-      color:var(--theme-color);
-      font-size:.9rem;
-      display:inline-flex; align-items:center;
-      font-variant:all-small-caps; 
-      letter-spacing:.02em;
-      font-weight:550
-    }
-    .highlights li:hover{ background:#cfd8e9; }
-    .highlights li a{ color:inherit; }
-    .highlights li::before{ content:"• "; }
-
-    /* 链接样式保持 */
-    .highlights a{
-      text-decoration: none;
-      color: var(--theme-color);
-    }
-    .highlights a[target="_blank"]::after{
-      content:'↗';
-      font-size:.75em;
-      margin-left:.15em;
-    }
-    /* —— 领域配色 —— */
-    /*.project.med{ color:#20799e; background:#e7f4fb; }
-    .project.cfd{ color:#2e6bb5; background:#e9f1fc; }
-    .project.csm{ color:#465d9d; background:#eff2fa; }*/
-
-    .hero{
-      height:100vh;
-      display:flex;justify-content:center;align-items:center;
-      background:url(/images/hero_bg.jpg) center/cover fixed;
-      text-align:center;
-      color: #F3F2E3;                               /* 主文字 */
-      text-shadow: 0 0 8px rgba(243, 242, 227, .25);/* 疏影（可调强度/模糊半径） */
-    }
-    .hero::before{
-      content:"";position:absolute;inset:0;
-      background:radial-gradient(circle at center,
-              rgba(0,0,0,.20) 0%,              /* 中心淡 */
-              rgba(0,0,0,.55) 45%,             /* 中间保持深靛对比 */
-              rgba(0,0,0,.35) 100%);           /* 外圈改 .35 让背景露出 */
-      mix-blend-mode:multiply;
-    }
-    .hero::after{content:"";position:absolute;inset:0;
-      background:rgba(0,0,0,.35);
-      text-decoration:none}          /* 遮罩 */
-    .hero-inner{position:relative;z-index:1}
-    .hero h1{font-family:var(--font-head);font-size:clamp(3rem,6vw,5rem);margin:0;font-weight:600;
-      color: #F3F2E3;                               /* 主文字 */
-      text-shadow: 0 0 8px rgba(243, 242, 227, .25);/* 疏影（可调强度/模糊半径） */}
-    .tagline{font-size:1.25rem;letter-spacing:.5px;
-      color: #F3F2E3;                               /* 主文字 */
-      text-shadow: 0 0 8px rgba(243, 242, 227, .25);/* 疏影（可调强度/模糊半径） */}
-    .scroll-down{display:inline-block;margin-top:2rem;font-size:1.5rem;color:#fff;
-      animation:scrollHint 1.2s infinite;text-decoration:none;}
-    .scroll-down:hover{
-      text-decoration:none;      /* 悬停时仍然不要线 */
-      color:var(--theme-color);  /* 如果想有颜色高亮，可保留；不要高亮就删掉这一行 */
-}
-    @keyframes scrollHint{0%{transform:translateY(0)}50%{transform:translateY(6px)}}
-
-    .timeline{position:relative;margin:0;padding:0 0 0 2rem;list-style:none;padding-left:3.5rem;}
-    .timeline::before{content:"";position:absolute;left:0;width:0px;top:0;bottom:0;
-      background:var(--theme-color);}
-    .timeline li{position:relative;margin-bottom:1.8rem}
-    .timeline .year{
-      position:absolute;left:-3.4rem;top:0;font-weight:600;color:var(--theme-color);}
-    .pub-card{
-      background:#fff;border-radius:10px;padding:.8rem 1rem;
-      box-shadow:0 2px 5px rgba(0,0,0,.05);}
-
-    .bib-btn{
-      border:none;
-      background:var(--theme-color);
-      color:#fff;
-      font-size:.8rem;
-      padding:.3rem .75rem;
-      border-radius:4px;
-      cursor:pointer;
-      opacity:0;
-      transform:translateY(4px);
-      transition:opacity .25s ease, transform .25s ease;
-    }
-    .pub-card:hover .bib-btn{
-      opacity:1;
-      transform:none;
-    }
-  
-    /* === 顶部整体容器，留出左右余白，宽屏居中 === */
-    #site-header{
-      position:fixed; top:0; left:0; right:0;
-      height:60px; z-index:1000;
-
-      background:rgba(255,255,255,.9); /* ↑ 由 .85 → .9 */
-      backdrop-filter:blur(10px) saturate(160%);
-      border-bottom:1px solid rgba(0,0,0,.06);
-      box-shadow:0 1px 6px rgba(0,0,0,.05);
-    }
-    .nav-wrap{
-      margin:0;                 /* 不再 auto 居中 */
-      height:100%;
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      align-items:center;
-      gap:1.2rem;
-      padding:0 .25rem;          /* 视口左侧留下 0.8 rem 安全内边距 */
-    }
-
-
-    /* 水平居中 + 小写英文字母间距 */
-    #top-nav ul{
-      display:flex;justify-content:center;
-      gap:2.5rem; margin:0;padding:0;list-style:none;
-      font-variant:all-small-caps;letter-spacing:.04em;
-      flex-wrap: wrap;
-    }
-
-    /* 链接：常态灰色，hover/active 高亮 */
-    .nav-link{
-      position:relative;
-      color:#4b5563;
-      font-size:.92rem;
-      font-weight:500;
-      text-decoration:none;
-      opacity:.85;
-      transition:color .25s, opacity .25s;
-    }
-    .nav-link:hover,
-    .nav-link.active{
-      color:var(--theme-color);
-      opacity:1;
-      font-weight:600;
-      text-decoration: none;
-    }
-
-    /* ✨ 细长滑动下划线 */
-    .nav-link::after{
-      content:"";position:absolute;left:50%;bottom:-8px;
-      width:0;height:2px;border-radius:1px;
-      background:var(--theme-color);
-      transition:width .35s cubic-bezier(.55,.08,.46,.95),
-                left  .35s cubic-bezier(.55,.08,.46,.95);
-    }
-    .nav-link:hover::after,
-    .nav-link.active::after{
-      width:100%;left:0;
-    }
-
-    /* 深色模式反色 */
-    :root.dark .nav-link{color:#bbb;}
-    :root.dark .nav-link:hover,
-    :root.dark .nav-link.active{color:#7ab8ff;}
-    :root.dark .nav-link::after{background:#7ab8ff;}
-
-    /* ========== 暗色整体基调 ========== */
-    :root.dark body{
-      background:#161616;        /* 全局深背景 */
-      color:#e6e6e6;             /* 正文字体提亮 */
-    }
-
-    /* 卡片 / 时间线 / 表面类的反色 */
-    :root.dark .project,
-    :root.dark .pub-card{
-      background:#222;           /* 深灰面板 */
-      box-shadow:0 2px 6px rgba(0,0,0,.6);
-    }
-
-    /* hero 遮罩再深一点，让文字更亮 */
-    :root.dark .hero::after{ background:rgba(0,0,0,.65); }
-
-    /* 链接高亮改成更柔和的蓝 */
-    :root.dark a{ color:#7ab8ff; }
-
-    #themeToggle:active{ transform:rotate(180deg) scale(.9); }
-
-    /* —— 768px 以下收窄: 隐藏文字只留汉堡菜单 —— */
-    /* 只在窄屏 (<768px) 显示汉堡 */
-    @media (max-width:768px){
-      .burger{
-        width:24px;height:18px;display:flex;
-        flex-direction:column;justify-content:space-between;
-        cursor:pointer;margin-left:1rem;
+    <!-- quick visual tune‑ups that sit on top of your existing stylesheet -->
+    <style>
+      :root {
+        --font-base: "Inter", "Lato", "Helvetica Neue", Arial, sans-serif;
+        --font-head: "Lora", Georgia, serif;
+        /* 🎨 Oxford Blue 体系 */
+        --theme-color: #0b2f5b; /* 主色（深） */
+        --theme-color-light: #476d96; /* 60 % tint，用作普通链接 */
+        --theme-color-subtle: #e2e8f4; /* 10 % tint，用作 chip 背景 */
+        --clr-surface: #fafbfd; /* 卡片表面 */
+        --clr-neutral: #243447; /* 正文默认色 */
       }
-      .burger span{
-        height:3px;background:#333;border-radius:2px;transition:.35s;
+
+      /* enable smooth scrolling for anchor navigation */
+      html {
+        scroll-behavior: smooth; /* <-- new, makes clicks glide instead of jump */
       }
-      /* 侧栏 & 图标动画 */
-      #top-nav ul{
-        position:fixed;top:56px;right:0;width:210px;
-        background:rgba(255,255,255,.96);padding:1rem 1.4rem;
-        flex-direction:column;gap:1rem;transform:translateX(100%);
-        box-shadow:-2px 0 8px rgba(0,0,0,.07);
+
+      .section-title {
+        position: relative;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        margin: 3.2rem 0 1.2rem;
       }
-      #top-nav.open ul{transform:none;}
-      #top-nav.open + .burger span:nth-child(1){
-        transform:translateY(7.5px) rotate(45deg);}
-      #top-nav.open + .burger span:nth-child(2){opacity:0;}
-      #top-nav.open + .burger span:nth-child(3){
-        transform:translateY(-7.5px) rotate(-45deg);}
-    }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -.4rem;
+        width: 3rem;
+        height: 3px;
+        background: var(--theme-color);
+        border-radius: 1px;
+      }
 
-    /* ② 按钮外观：隐约、悬停显色 */
-    #themeToggle{
-      border:none;
-      background:transparent;
-      font-size:1.15rem;
-      color:#666;
-      cursor:pointer;
-      padding:.25rem;
-      margin-left:.6rem;
-      transition:color .25s;
-    }
-    #themeToggle:hover{color:var(--theme-color);}
+      /* smooth typography */
+      body {
+        font-family: var(--font-base);
+        line-height: 1.6;
+        color: var(--clr-neutral);
+        background: #ffffff; /* 若想比现在更亮，可留原样 */
+        margin: 0;
+        padding-top: 56px; /* keep content below fixed nav */
+        font-weight: 400;
+      }
 
-    /* 暗黑模式下变亮色 & 换图标 */
-    :root.dark #themeToggle{color:#ddd;}
+      a {
+        color: var(--theme-color-light);
+        text-decoration: underline transparent 2px;
+        text-underline-offset: 2px;
+        transition: color .2s, text-decoration-color .2s;
+      }
+      a:hover {
+        color: var(--theme-color);
+        text-decoration: underline 2px;
+        text-underline-offset: 2px;
+        text-decoration-color: var(--theme-color);
+      }
 
-    /* ——— Awards: title typography ——— */
-    .pub-card h4{
-      font-family: var(--font-head);   /* 用和章节标题相同的衬线体 Lora */
-      font-size: 1.1rem;               /* 比正文稍大，仍然低调 */
-      font-weight: 600;                /* 中粗，避免太重 */
-      letter-spacing: .015em;          /* 微调字距，优雅 */
-      margin: 0 0 .25rem;              /* 与描述之间留些空隙 */
-      line-height: 1.35;               /* 多行时更舒展 */
-    }
+      h2 {
+        margin: 0;
+        font-family: var(--font-head);
+        font-size: 1.7rem;
+        font-weight: 600;
+      }
 
-    .pub-card h4 a{
-      color: inherit;                  /* 继承文字色，统一風格 */
-      text-decoration: none;
-      transition: color .25s;
-    }
+      /* ======= navigation bar ======= */
+      #top-nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        padding: 0 24px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px) saturate(140%);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+      }
 
-    .pub-card h4 a:hover{
-      color: var(--theme-color);       /* 悬停时用主色轻微点亮 */
-      text-decoration: underline 2px;      /* 提醒可点击，极简 */
-      text-underline-offset: 2px;
-    }
+      /* underline indicator for current section */
+      .nav-link.active::after,
+      .nav-link:hover::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -8px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 1px;
+      }
 
-    /* 深色模式下稍微提亮标题 */
-    :root.dark .pub-card h4{color:#f0f0f0;}
+      /* tiny inline icons – keep them aligned with text */
+      .inline-icon {
+        height: 1em;
+        width: auto;
+        vertical-align: -0.15em;
+        margin-right: 0.25em;
+      }
 
-    /* —— John Barron 模板致谢 —— */
-    .credit{
-      position: fixed;            /* 固定在视口，始终可见 */
-      bottom: 12px;               /* 距离底边 & 右边留点空 */
-      right: 16px;
-      font-size: .7rem;
-      color: #666;
-      opacity: .5;
-      z-index: 2000;              /* 保证压在最上层 */
-    }
-    .credit a{
-      font-size: .7rem;
-      color: inherit;             /* 统一灰色；鼠标悬停时再变蓝 */
-      text-decoration: none;
-      border-bottom: 1px dotted currentColor;
-    }
-    .credit a:hover{
-      color: var(--theme-color);  /* 你的主题色 */
-    }
-    :root.dark .credit{ color:#bbb; }  /* 暗色模式走浅灰 */
+      .icon-img {
+        height: 1.25rem; /* bigger inline img */
+        width: auto;
+        vertical-align: -0.2em;
+        margin-right: 0.32em;
+      }
 
-  </style>
-</head>
+      /* simple wrapper for main content */
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
 
-<body>
-  
-  <span id="top"></span>
+      /* make anchor targets land below fixed nav (covers any h2 that has an id) */
+      section[id] {
+        scroll-margin-top: 72px;
+      }
 
-  <!-- === hero === -->
-  <header class="hero">
-    <div class="hero-inner">
-      <h1>TAO Yuhao</h1>
-      <p class="tagline">Medical Devices & Robotics</p>
-      <a href="#profile" class="scroll-down">▼</a>
-    </div>
-  </header>
+      .name {
+        font-family: var(--font-head);
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
 
+      /* responsive image w/ soft‑corner mask */
+      .profile-photo {
+        width: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 12%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
 
+      /* contact links */
+      .contact {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+      }
+      .contact a {
+        text-decoration: underline transparent 2px;
+        text-underline-offset: 2px;
+        transition: color .2s, text-decoration-color .2s;
+      }
+      .contact a:hover {
+        text-decoration: underline 2px;
+        text-underline-offset: 2px;
+        text-decoration-color: var(--theme-color);
+      }
 
+      /* ========= 纵向 6×1 卡片列表 ========= */
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem; /* 卡片间距 */
+        margin-top: 2.2rem;
+      }
 
-  <!-- === navigation === -->
-  <header id="site-header">
-    <div class="nav-wrap">
-  
-      <!-- 主导航 -->
-      <nav id="top-nav">
-        <ul>
-          <li><a class="nav-link" href="#profile">Profile</a></li>
-          <li><a class="nav-link" href="#publications">Publications</a></li>
-          <li><a class="nav-link" href="#research">Research</a></li>
-          <li><a class="nav-link" href="#awards">Awards</a></li>
-        </ul>
-      </nav>
+      /* 预览区域整体 */
+      .thumb {
+        position: relative;
+        width: 250px; /* 与图片/视频一致 */
+        cursor: pointer; /* 悬停时鼠标变手形，可省略 */
+      }
 
+      /* 静态封面图 */
+      .thumb .cover {
+        display: block;
+        width: 250px;
+      }
+
+      /* 预览视频：绝对定位覆盖在封面图上，初始透明不可见 */
+      .thumb video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none; /* 不抢鼠标事件 */
+        transition: opacity .25s;
+      }
+
+      /* 悬停时让视频显现，封面图隐藏 */
+      .thumb.hovering video { opacity: 1; }
+      .thumb.hovering .cover { opacity: 0; }
+
+      .project {
+        border-left: 4px solid var(--theme-color); /* 视觉锚点 */
+        border-radius: 10px;
+        background: var(--clr-surface);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .05), 0 4px 8px rgba(0, 0, 0, .04);
+        transition: transform .25s ease, box-shadow .25s ease;
+        display: flex;
+        align-items: flex-start; /* 顶对齐即可 */
+        gap: 1rem;
+      }
+
+      .project .proj-img { /* 左侧图片 */
+        flex: 0 0 20%; /* 固定 20 % */
+        max-width: 40vw; /* 防止被别的宽度规则覆盖 */
+        width: 250px;
+        height: auto; /* 保持纵横比 */
+        object-fit: cover;
+      }
+
+      .project .proj-content { /* 右侧文字 */
+        flex: 1 1 80%;
+      }
+
+      .project:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .1);
+      }
+
+      .project::before { display: none; }
+      .project { position: relative; padding: 0.3rem 0.5rem 0.3rem 1.2rem; } /* 留空间给圆点 */
+
+      .project h3 {
+        font-family: var(--font-head);
+        margin: 0 0 .4rem;
+        font-size: 1.15rem;
+        font-variant: small-caps;
+        letter-spacing: .03em;
+        font-weight: 600;
+      }
+      .summary { margin: 0 0 .65rem; }
+
+      /* “Highlights:” 本身 */
+      .highlight-title { font-weight: 600; white-space: nowrap; }
+
+      /* 列表去掉默认样式，横向排版 */
+      .highlights { display: flex; flex-wrap: wrap; gap: .4rem .6rem; }
+      .highlights li {
+        background: var(--theme-color-subtle);
+        border-radius: 9999px;
+        padding: .1rem .6rem;
+        color: var(--theme-color);
+        font-size: .9rem;
+        display: inline-flex;
+        align-items: center;
+        font-variant: all-small-caps;
+        letter-spacing: .02em;
+        font-weight: 550;
+        line-height: 1.45;
+      }
+      .highlights li:hover { background: #cfd8e9; }
+      .highlights li a { color: inherit; }
+      .highlights li::before { content: "• "; }
+
+      /* 链接样式保持 */
+      .highlights a { text-decoration: none; color: var(--theme-color); }
+      .highlights a[target="_blank"]::after { content: '↗'; font-size: .75em; margin-left: .15em; }
+
+      /* —— 领域配色 —— */
+      /* .project.med { color:#20799e; background:#e7f4fb; }
+         .project.cfd { color:#2e6bb5; background:#e9f1fc; }
+         .project.csm { color:#465d9d; background:#eff2fa; } */
+
+      .hero{
+        height:100vh;
+        display:flex;justify-content:center;align-items:center;
+        background:url(/images/hero_bg.jpg) center/cover fixed;
+        text-align:center;
+        color:#F3F2E3;
+        /* 字的光晕更柔、更“雾面” */
+        text-shadow: 0 0 8px rgba(243, 242, 227, .25);
+        position:relative;
+        min-height:clamp(560px,100vh,880px);
+      }
+
+      /* ↓ 暗角收窄、中心提亮，但不刺眼 */
+      .hero::before{
+        content:""; position:absolute; inset:0;
+        background:
+          radial-gradient(110% 80% at 50% 46%,
+            rgba(0,0,0,.12) 0%,
+            rgba(0,0,0,.32) 52%,
+            rgba(0,0,0,.6) 100%);
+        mix-blend-mode:multiply;
+      }
+
+      /* ↓ 主题蓝作为轻薄色洗，改为上下渐变；暗角略减 */
+      .hero::after{
+        content:""; position:absolute; inset:0;
+        background: linear-gradient(180deg,
+          rgba(11,47,91,.14) 0%,
+          rgba(11,47,91,.18) 55%,
+          rgba(11,47,91,.14) 100%);
+        box-shadow: inset 0 0 80px rgba(0,0,0,.18);
+        backdrop-filter: brightness(.94) contrast(1.05) saturate(92%);
+        -webkit-backdrop-filter: brightness(.94) contrast(1.05) saturate(92%);
+      }
       
-    </div>
-  </header>
+      .hero-inner { position: relative; z-index: 1; }
 
+      .hero h1 {
+        font-family: var(--font-head);
+        font-size: clamp(3rem, 6vw, 5rem);
+        margin: 0;
+        font-weight: 600;
+        color: #F3F2E3;
+        text-shadow: 0 0 8px rgba(243, 242, 227, .25);
+      }
 
+      .tagline {
+        font-size: 1.25rem;
+        letter-spacing: .5px;
+        color: #F3F2E3;
+        text-shadow: 0 0 8px rgba(243, 242, 227, .25);
+      }
 
+      .scroll-down {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        color: #F3F2E3; /* <- 修正原先的 '##' 小笔误 */
+        animation: scrollHint 1.2s infinite;
+        text-decoration: none;
+      }
+      .scroll-down:hover {
+        text-decoration: none;
+        color: var(--theme-color);
+      }
 
-  <!-- === profile section === -->
-  <section id="profile" class="container" style="margin-top:2rem;">
-    <table style="width:100%; border:0; border-spacing:0;">
-      <tr>
-        <td style="width:63%; vertical-align:top; padding-right:2rem;">
-          <h1 class="name">TAO Yuhao&#160 |&#160 陶禹皓</h1>
-        
-          <p>
-            I'm a master’s student in <a href="https://master-robotics.ethz.ch/">Robotics, Systems and Control</a> at <img src="images/eth_icon.jpg" class="inline-icon"/><a href="https://ethz.ch/en.html">ETH Zürich</a>, where I develop robots for in‑vivo diagnosis at the <img src="images/msrl_icon.jpg" class="inline-icon"/><a href="https://msrl.ethz.ch/">Multi‑Scale Robotics Lab (MSRL)</a> under <a href="https://msrl.ethz.ch/the-lab/team/Brad_Nelson.html">Prof. Bradley Nelson</a>. Previously, I earned my B.Sc. in <a href="https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/studiengaenge/liste-aktuelle-studiengaenge/studiengangbeschreibung/~bnev/maschinenbau-b-sc-/?lidx=1">Mechanical Engineering</a> <strong>with distinction</strong> from <img src="images/rwth_icon.png" class="inline-icon"/><a href="https://www.rwth-aachen.de/cms/~a/root/?lidx=1">RWTH Aachen University</a>.
-          </p>
+      @keyframes scrollHint { 0% { transform: translateY(0) } 50% { transform: translateY(6px) } }
 
-          <p>
-            I'm intrigued by intelligent <strong>medical devices</strong> that could advance healthcare, and my long‑term goal is to build <img src="images/brain_icon.jpg" class="inline-icon"/><strong>brain‑decoding devices</strong> for human augmentation. So far, my experience spans medical devices, 3D antenna design, embedded systems, computational fluid dynamics, and computational solid mechanics from continuum to atomistic scales.
-          </p>
+      /* 移动端避免 fixed 触发抖动（不影响桌面“大片感”） */
+      @media (max-width: 768px){
+        .hero{ background-attachment: scroll; }
+      }
 
-          <p>
-            In my spare time, I cycle through Switzerland's rolling vistas on my <img src="images/canyon_icon.png" class="inline-icon"/>Canyon Aeroad and listen to classical music — from Bach to Rach.
-          </p>
+      .timeline {
+        position: relative;
+        margin: 0;
+        padding: 0 0 0 2rem;
+        list-style: none;
+        padding-left: 3.5rem;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 0px;
+        top: 0;
+        bottom: 0;
+        background: var(--theme-color);
+      }
+      .timeline li { position: relative; margin-bottom: 1.8rem; }
+      .timeline .year { position: absolute; left: -3.4rem; top: 0; font-weight: 600; color: var(--theme-color); }
 
-          <div class="contact">
-            <a href="data/TAO Yuhao.pdf"><i class="fa-solid fa-file-lines"></i> CV</a>
-            &nbsp;/&nbsp;
-            <a href=""><i class="fa-brands fa-linkedin"></i><img src="images/gscholar.png" class="icon-img"/></a>
-            &nbsp;/&nbsp;
-            <a href="https://www.linkedin.com/in/%E7%A6%B9%E7%9A%93-%E9%99%B6-63b804210/"><i class="fa-brands fa-linkedin"></i><img src="images/linkedin_icon.png" class="icon-img"/></a>
-          </div>
-        </td>
-        <td style="width:37%; vertical-align:top;">
-          <img src="images/speak_cropped.jpg" alt="Yuhao Tao speaking" class="profile-photo" />
-        </td>
-      </tr>
-    </table>
-  </section>
+      .pub-card {
+        background: var(--clr-surface);
+        border-radius: 10px;
+        padding: .8rem 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,.05);
+        margin-top: 0.5rem; /* 卡片间距 */;
+      }
 
+      .bib-btn {
+        border: none;
+        background: var(--theme-color);
+        color: #fff;
+        font-size: .8rem;
+        padding: .3rem .75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity .25s ease, transform .25s ease;
+      }
+      .pub-card:hover .bib-btn { opacity: 1; transform: none; }
 
+      /* === 顶部整体容器，留出左右余白，宽屏居中 === */
+      #site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 1000;
+        background: rgba(255,255,255,.9); /* ↑ 由 .85 → .9 */
+        backdrop-filter: blur(10px) saturate(160%);
+        border-bottom: 1px solid rgba(0,0,0,.06);
+        box-shadow: 0 1px 6px rgba(0,0,0,.05);
+      }
+      .nav-wrap {
+        margin: 0; /* 不再 auto 居中 */
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0 .25rem; /* 视口左侧留下 0.8 rem 安全内边距 */
+      }
 
+      /* 水平居中 + 小写英文字母间距 */
+      #top-nav ul {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-variant: all-small-caps;
+        letter-spacing: .04em;
+        flex-wrap: wrap;
+      }
 
-  <!-- === publications section placeholder === -->
-  <section id="publications" class="container" style="margin-top: 2rem;">
-  <h2 class="section-title">Publications</h2>
+      /* 链接：常态灰色，hover/active 高亮 */
+      .nav-link {
+        position: relative;
+        color: #4b5563;
+        font-size: .92rem;
+        font-weight: 500;
+        text-decoration: none;
+        opacity: .85;
+        transition: color .25s, opacity .25s;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--theme-color);
+        opacity: 1;
+        font-weight: 600;
+        text-decoration: none;
+      }
 
-    <ul class="timeline">
+      /* ✨ 细长滑动下划线 */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 0;
+        height: 2px;
+        border-radius: 1px;
+        background: var(--theme-color);
+        transition: width .35s cubic-bezier(.55,.08,.46,.95), left .35s cubic-bezier(.55,.08,.46,.95);
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after { width: 100%; left: 0; }
 
-      <li>
-        <span class="year">2023</span>
-        <div class="pub-card">
-          <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">
-          <h4>Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained 
-            structure at cryogenic temperature</h4></a>
-          <p><strong>Frontiers in Materials</strong> · <em>Yuhao Tao, Wenqiang Cheng, Wei Wang</em></p>
+      /* 深色模式反色 */
+      :root.dark .nav-link { color: #bbb; }
+      :root.dark .nav-link:hover,
+      :root.dark .nav-link.active { color: #7ab8ff; }
+      :root.dark .nav-link::after { background: #7ab8ff; }
 
-          <!-- 复制 BibTeX 按钮 -->
-          <button
-            class="bib-btn"
-            data-bib='@article{tao2023MEA,
+      /* ========== 暗色整体基调 ========== */
+      :root.dark body { background: #161616; color: #e6e6e6; }
+
+      /* 卡片 / 时间线 / 表面类的反色 */
+      :root.dark .project,
+      :root.dark .pub-card { background: #222; box-shadow: 0 2px 6px rgba(0,0,0,.6); }
+
+      /* hero 遮罩再深一点，让文字更亮 */
+      :root.dark .hero::after { background: rgba(0,0,0,.65); }
+
+      /* 链接高亮改成更柔和的蓝 */
+      :root.dark a { color: #7ab8ff; }
+
+      #themeToggle:active { transform: rotate(180deg) scale(.9); }
+
+      /* —— 768px 以下收窄: 隐藏文字只留汉堡菜单 —— */
+      /* 只在窄屏 (<768px) 显示汉堡 */
+      @media (max-width: 768px) {
+        .burger { width: 24px; height: 18px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; margin-left: 1rem; }
+        .burger span { height: 3px; background: #333; border-radius: 2px; transition: .35s; }
+        /* 侧栏 & 图标动画 */
+        #top-nav ul { position: fixed; top: 56px; right: 0; width: 210px; background: rgba(255,255,255,.96); padding: 1rem 1.4rem; flex-direction: column; gap: 1rem; transform: translateX(100%); box-shadow: -2px 0 8px rgba(0,0,0,.07); }
+        #top-nav.open ul { transform: none; }
+        #top-nav.open + .burger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        #top-nav.open + .burger span:nth-child(2) { opacity: 0; }
+        #top-nav.open + .burger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+      }
+
+      /* ② 按钮外观：隐约、悬停显色 */
+      #themeToggle { border: none; background: transparent; font-size: 1.15rem; color: #666; cursor: pointer; padding: .25rem; margin-left: .6rem; transition: color .25s; }
+      #themeToggle:hover { color: var(--theme-color); }
+
+      /* 暗黑模式下变亮色 & 换图标 */
+      :root.dark #themeToggle { color: #ddd; }
+
+      /* ——— Awards: title typography ——— */
+      .pub-card h4 {
+        font-family: var(--font-head); /* 用和章节标题相同的衬线体 Lora */
+        font-size: 1.1rem; /* 比正文稍大，仍然低调 */
+        font-weight: 600; /* 中粗，避免太重 */
+        letter-spacing: .015em; /* 微调字距，优雅 */
+        margin: 0 0 .25rem; /* 与描述之间留些空隙 */
+        line-height: 1.35; /* 多行时更舒展 */
+      }
+      .pub-card h4 a { color: inherit; text-decoration: none; transition: color .25s; }
+      .pub-card h4 a:hover { color: var(--theme-color); text-decoration: underline 2px; text-underline-offset: 2px; }
+
+      /* 深色模式下稍微提亮标题 */
+      :root.dark .pub-card h4 { color: #f0f0f0; }
+
+      /* —— John Barron 模板致谢 —— */
+      .credit {
+        position: fixed; /* 固定在视口，始终可见 */
+        bottom: 12px; /* 距离底边 & 右边留点空 */
+        right: 16px;
+        font-size: .7rem;
+        color: #666;
+        opacity: .5;
+        z-index: 2000; /* 保证压在最上层 */
+      }
+      .credit a { font-size: .7rem; color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+      .credit a:hover { color: var(--theme-color); /* 你的主题色 */ }
+      :root.dark .credit { color: #bbb; } /* 暗色模式走浅灰 */
+    </style>
+  </head>
+
+  <body>
+    <span id="top"></span>
+
+    <!-- === hero === -->
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>TAO Yuhao</h1>
+        <p class="tagline">Medical Devices | Robotics</p>
+        <a href="#profile" class="scroll-down">▼</a>
+      </div>
+    </header>
+
+    <!-- === navigation === -->
+    <header id="site-header">
+      <div class="nav-wrap">
+        <!-- 主导航 -->
+        <nav id="top-nav">
+          <ul>
+            <li><a class="nav-link" href="#profile">Profile</a></li>
+            <li><a class="nav-link" href="#publications">Publications</a></li>
+            <li><a class="nav-link" href="#research">Research</a></li>
+            <li><a class="nav-link" href="#awards">Awards</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- === profile section === -->
+    <section id="profile" class="container" style="margin-top:2rem;">
+      <table style="width:100%; border:0; border-spacing:0;">
+        <tr>
+          <td style="width:63%; vertical-align:top; padding-right:2rem;">
+            <h1 class="name">TAO Yuhao&#160 |&#160 陶禹皓</h1>
+
+            <p>
+              I'm a master’s student in <a href="https://master-robotics.ethz.ch/">Robotics, Systems and Control</a> at <img src="images/eth_icon.jpg" class="inline-icon" /><a href="https://ethz.ch/en.html">ETH Zürich</a>, where I develop robots for in‑vivo diagnosis at the <img src="images/msrl_icon.jpg" class="inline-icon" /><a href="https://msrl.ethz.ch/">Multi‑Scale Robotics Lab&nbsp;(MSRL)</a> under <a href="https://msrl.ethz.ch/the-lab/team/Brad_Nelson.html">Prof. Bradley Nelson</a>. Previously, I earned my B.Sc. in <a href="https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/studiengaenge/liste-aktuelle-studiengaenge/studiengangbeschreibung/~bnev/maschinenbau-b-sc-/?lidx=1">Mechanical Engineering</a> <strong>with distinction</strong> from <img src="images/rwth_icon.png" class="inline-icon" /><a href="https://www.rwth-aachen.de/cms/~a/root/?lidx=1">RWTH Aachen University</a>.
+            </p>
+
+            <p>
+              I'm intrigued by intelligent <strong>medical devices</strong> that could advance healthcare, and my long‑term goal is to build <img src="images/brain_icon.jpg" class="inline-icon" /><strong>brain‑decoding devices</strong> for human augmentation. So far, my experience spans medical devices, 3D antenna design, embedded systems, computational fluid dynamics, and computational solid mechanics from continuum to atomistic scales.
+            </p>
+
+            <p>
+              In my spare time, I cycle through Switzerland's rolling vistas on my <img src="images/canyon_icon.png" class="inline-icon" />Canyon&nbsp;Aeroad and listen to classical music — from Bach to Rach.
+            </p>
+
+            <div class="contact">
+              <a href="data/TAO Yuhao.pdf"><i class="fa-solid fa-file-lines"></i> CV</a>
+              &nbsp;/&nbsp;
+              <a href=""><i class="fa-brands fa-linkedin"></i><img src="images/gscholar.png" class="icon-img" /></a>
+              &nbsp;/&nbsp;
+              <a href="https://www.linkedin.com/in/%E7%A6%B9%E7%9A%93-%E9%99%B6-63b804210/"><i class="fa-brands fa-linkedin"></i><img src="images/linkedin_icon.png" class="icon-img" /></a>
+            </div>
+          </td>
+          <td style="width:37%; vertical-align:top;">
+            <img src="images/speak_cropped.jpg" alt="Yuhao Tao speaking" class="profile-photo" />
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- === publications section placeholder === -->
+    <section id="publications" class="container" style="margin-top: 2rem;">
+      <h2 class="section-title">Publications</h2>
+      <ul class="timeline">
+        <li>
+          <span class="year">2023</span>
+          <div class="pub-card">
+            <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">
+              <h4>
+                Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained
+                structure at cryogenic temperature
+              </h4>
+            </a>
+            <p><strong>Frontiers in Materials</strong> · <em>Yuhao Tao, Wenqiang Cheng, Wei Wang</em></p>
+            <!-- 复制 BibTeX 按钮 -->
+            <button
+              class="bib-btn"
+              data-bib='@article{tao2023MEA,
               title      = {Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained structure at cryogenic temperature},
               author     = {Tao Y, Cheng W and Wang W},
               journal    = {Frontiers in Materials},
               year       = {2023},
               doi        = {10.3389/fmats.2022.1118952}
-            }'>
-            BibTeX
-          </button>
-        </div>
-      </li>
+            }'
+            >
+              BibTeX
+            </button>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-    </ul>
+    <!-- === research section placeholder === -->
+    <section id="research" class="container" style="margin-top: 2rem;">
+      <h2 class="section-title">Research</h2>
+      <div class="project-list">
+        <!-- ========== Medical Device (1) ========== -->
+        <article class="project med">
+          <!-- 左侧缩略图 -->
+          <img class="proj-img" src="images/origami_cover.png" width="250" />
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/origamibot/"><h3>Origami‑bot</h3></a>
+            <p class="summary">
+              Magnetically navigable, pop‑up‑fabricated origami capsule robot with an on‑board, frequency‑reconfigurable 3D antenna and signal source for channel probing and intestinal monitoring.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><a href="https://er1koenig.github.io/origamibot/"><span>Structure Design & Pop‑Up Fabrication</span></a></li>
+              <li><a href="https://er1koenig.github.io/origamibot/"><span>3D Frequency‑reconfigurable Antenna Design</span></a></li>
+              <li><a href="https://er1koenig.github.io/origamibot/"><span>Magnetic Navigation</span></a></li>
+              <li><a href="https://er1koenig.github.io/origamibot/"><span>GHz Frequency Source Design & Integration</span></a></li>
+              <li><a href="https://er1koenig.github.io/origamibot/"><span>Python + Fortran Magnet Dynamics (Abaqus‑based)</span></a></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/origamibot/">project page</a>
+            /
+            <a href="https://er1koenig.github.io/origamibot/">paper</a>
+          </div>
+        </article>
 
-  </section>
+        <!-- ========== Medical Device (2) ========== -->
+        <article class="project med">
+          <!-- 左侧缩略图 -->
+          <img src="images/bug.jpg" width="250" class="proj-img" />
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/patchbot/"><h3>Patch‑bot</h3></a>
+            <p class="summary">
+              Magnetic adhesive‑patch capsule robot featuring on‑board power, Bluetooth communication, and flexible temperature & pH sensors for comfortable and convenient gastric‑reflux diagnosis.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><a href="https://er1koenig.github.io/patchbot/"><span>Adhesive Fabrication & Test</span></a></li>
+              <li><a href="https://er1koenig.github.io/patchbot/"><span>Embedded System Calibration</span></a></li>
+              <li><a href="https://er1koenig.github.io/patchbot/"><span>System Integration</span></a></li>
+              <li><a href="https://er1koenig.github.io/patchbot/"><span>Magnetic Navigation</span></a></li>
+              <li><a href="https://er1koenig.github.io/patchbot/"><span>System In‑vivo Test</span></a></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/patchbot/">project page</a>
+            /
+            <a href="https://er1koenig.github.io/patchbot/">paper</a>
+          </div>
+        </article>
 
+        <!-- ========== CFD (3) ========== -->
+        <article class="project cfd">
+          <!-- 图片 / 视频预览区 -->
+          <div class="thumb" id="thumb_cfd">
+            <!-- 封面静态图 -->
+            <img src="images/cfd_cover.png" width="250" class="cover" />
+            <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
+            <video id="video_cfd" width="250" muted loop preload="metadata">
+              <source src="images/cfd_cover.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/droplet-dynamics/"><h3>Droplet Dynamics</h3></a>
+            <p class="summary">
+              Development of a simulation module for sub‑Kolmogorov deformable droplets coupled with an in‑house Lattice–Boltzmann solver.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><a href="https://er1koenig.github.io/droplet-dynamics/#error-scheme"><span>Rotation‑Induced Geometry Error Correction</span></a></li>
+              <li><a href="https://er1koenig.github.io/droplet-dynamics/"><span>Constant Load Cases</span></a></li>
+              <li><a href="https://er1koenig.github.io/droplet-dynamics/"><span>Oblate Rising Bubble</span></a></li>
+              <li><a href="https://er1koenig.github.io/droplet-dynamics/#bubble"><span>Droplets in Isotropic Turbulence</span></a></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/droplet-dynamics/">project page</a>
+            /
+            <a href="data/bachelor_thesis.pdf">bachelor thesis</a>
+          </div>
+        </article>
+        </tr>
 
+        <!-- ========== Comp. Solid Mech (4) ========== -->
+        <article class="project csm">
+          <!-- 左侧缩略图 -->
+          <img src="images/mdsim_cover.png" width="250" class="proj-img" />
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/MD-sim/"><h3>Atomistic Simulation of Alloy</h3></a>
+            <p class="summary">
+              Atomistic simulation of a medium‑entropy alloy with a gradient nano‑grained structure under cryogenic‑temperature tensile deformation.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><span>Voronoi Grain Initialization</span></li>
+              <li><span>Hetero‑deformation Induced Hardening</span></li>
+              <li><span>Grain Rotation Estimation Algorithm</span></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/MD-sim/">project page</a>
+            /
+            <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">paper</a>
+          </div>
+        </article>
 
+        <!-- ========== Comp. Solid Mech (5) ========== -->
+        <article class="project csm">
+          <!-- 左侧缩略图 -->
+          <img src="images/fesim_cover.png" width="250" class="proj-img" />
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/FE-Sintering/"><h3>Finite Element Simulation of Sintering</h3></a>
+            <p class="summary">
+              Abaqus models with custom UMAT scripts for flash and ultra‑high‑speed sintering, calibrated against experimental data.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><span>UMAT for Grain Growth</span></li>
+              <li><span>Temperature Prediction of UHS Sintering</span></li>
+              <li><span>Parameter Calibration via Damped‑Newton</span></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/FE-Sintering/">project page</a>
+          </div>
+        </article>
 
-  <!-- === research section placeholder === -->
-  <section id="research" class="container" style="margin-top: 2rem;">
-  <h2 class="section-title">Research</h2>
-
-  <div class="project-list">
-
-    <!-- ========== Medical Device (1) ========== -->
-    <article class="project med">
-      <!-- 左侧缩略图 -->
-      <img class="proj-img" src="images/origami_cover.png" width="250">
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/origamibot/"><h3>Origami‑bot</h3></a>
-        <p class="summary">
-          Magnetically navigable, pop‑up‑fabricated origami capsule robot with an on‑board, frequency‑reconfigurable 3D antenna and signal source for channel probing and intestinal monitoring.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
-
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="https://er1koenig.github.io/origamibot/">
-              <span>Structure Design & Pop‑Up Fabrication</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/origamibot/">
-              <span>3D Frequency-reconfigurable Antenna Design</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/origamibot/">
-              <span>Magnetic Navigation</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/origamibot/">
-              <span>GHz Frequency Source Design & Integration</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/origamibot/">
-              <span>Coding a Python + Fortran Platform for Magnet Dynamics Based on Abaqus</span>
-            </a>
-          </li>        
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/origamibot/">project page</a>
-        /
-        <a href="https://er1koenig.github.io/origamibot/">paper</a>
+        <!-- ========== Comp. Solid Mech (6) ========== -->
+        <article class="project csm">
+          <!-- 图片 / 视频预览区 -->
+          <div class="thumb" id="thumb_pf">
+            <!-- 封面静态图 -->
+            <img src="images/pfsim_cover.png" width="250" class="cover" />
+            <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
+            <video id="video_pf" width="250" muted loop preload="metadata">
+              <source src="images/pfsim_cover.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <!-- 右侧文字区 -->
+          <div class="proj-content">
+            <a href="https://er1koenig.github.io/PF-Sintering/"><h3>Phase Field Simulation of Sintering</h3></a>
+            <p class="summary">
+              Phase‑field study of solid‑state sintering that visualises how neighbouring powder grains neck, densify, and rotate—revealing the microstructural physics of porosity loss.
+            </p>
+            <!-- 1*3 highlight 带缩略图 -->
+            <span class="highlight-title">Highlights:</span>
+            <!-- 纵向 1×3 高亮 -->
+            <ul class="highlights">
+              <li><a href="https://er1koenig.github.io/PF-Sintering/"><span>Cahn‑Hilliard for Mass Transport</span></a></li>
+              <li><a href="https://er1koenig.github.io/PF-Sintering/"><span>Allen‑Cahn for Grain Rotation</span></a></li>
+              <li><a href="https://er1koenig.github.io/PF-Sintering/#demo"><span>Multi‑grain Sintering Case</span></a></li>
+            </ul>
+            <!-- Project page, paper -->
+            <p></p>
+            <a href="https://er1koenig.github.io/PF-Sintering/">project page</a>
+            /
+            <a href="https://github.com/Er1koenig/PF-Sintering/blob/main/original_script">code</a>
+          </div>
+        </article>
       </div>
-    </article>
+    </section>
 
+    <!-- === awards section === -->
+    <section id="awards" class="container" style="margin-top:2rem;">
+      <h2 class="section-title">Awards</h2>
+      <ul class="timeline">
+        <!-- ——— 2023 ——— -->
+        <li>
+          <span class="year">2023</span>
+          <div class="pub-card">
+            <a href="data/bsc_transcript.pdf"><h4>Graduation <em>with distinction</em> — top 0.2%</h4></a>
+            <p><strong>RWTH&nbsp;Aachen · B.Sc.&nbsp;Mechanical&nbsp;Engineering</strong></p>
+          </div>
+        </li>
+        <!-- ——— 2022 / 2023 ——— -->
+        <li>
+          <span class="year">2022</span>
+          <div class="pub-card">
+            <a href="data/germany scholarship 2022_2023.pdf"><h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
+            <p><em>National merit‑based scholarship</em></p>
+          </div>
+          <div class="pub-card">
+            <a href="data/dean's List 2020_2021.pdf"><h4>Dean’s&nbsp;List&nbsp;—&nbsp;top 5 %</h4></a>
+            <p><strong>RWTH&nbsp;Aachen</strong></p>
+          </div>
+        </li>
+        <!-- ——— 2021 ——— -->
+        <li>
+          <span class="year">2021</span>
+          <div class="pub-card">
+            <a href="data/dean's list 2019_2020.pdf"><h4>Dean’s&nbsp;List&nbsp;—&nbsp;top 5 %</h4></a>
+            <p><strong>RWTH&nbsp;Aachen</strong></p>
+          </div>
+        </li>
+        <!-- ——— 2020 ——— -->
+        <li>
+          <span class="year">2020</span>
+          <div class="pub-card" style="margin-top:.8rem">
+            <a href="data/germany scholarship 2020_2021.pdf"><h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
+            <p><em>National merit‑based scholarship</em></p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-    <!-- ========== Medical Device (2) ========== -->
-    <article class="project med">
-      <!-- 左侧缩略图 -->
-      <img src="images/bug.jpg" width=250 class="proj-img">
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/patchbot/"><h3>Patch‑bot</h3></a>
-        <p class="summary">
-          Magnetic adhesive‑patch capsule robot featuring on‑board power, Bluetooth communication, and flexible temperature & pH sensors for comfortable and convenient gastric‑reflux diagnosis.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
+    <script>
+      document.querySelectorAll('.bib-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(btn.dataset.bib)
+            .then(() => {
+              const old = btn.textContent;
+              btn.textContent = '✓ Copied!';
+              setTimeout(() => btn.textContent = old, 1500);
+            })
+            .catch(() => alert('Copy failed 😢'));
+        });
+      });
 
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="https://er1koenig.github.io/patchbot/">
-              <span>Adhesive Fabrication & Test</span>
-            </a>
-          </li>
+      /* Scroll‑Spy（如果已加，可跳过）*/
+      const links = [...document.querySelectorAll('.nav-link')];
+      const sections = [...document.querySelectorAll('section[id]')].sort(
+        (a, b) => a.offsetTop - b.offsetTop
+      );
 
-          <li>
-            <a href="https://er1koenig.github.io/patchbot/">
-              <span>Embedded System Calibration</span>
-            </a>
-          </li>
+      function onScroll() {
+        const pos = window.scrollY + 140; // 140 = 顶栏 56 + 一点缓冲
+        let cur = sections[0];
+        for (const s of sections) {
+          if (pos >= s.offsetTop) cur = s;
+          else break;
+        }
+        links.forEach(a => a.classList.toggle('active', a.hash.slice(1) === cur.id));
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
 
-          <li>
-            <a href="https://er1koenig.github.io/patchbot/">
-              <span>System Integration</span>
-            </a>
-          </li>
-          
-          <li>
-            <a href="https://er1koenig.github.io/patchbot/">
-              <span>Magnetic Navigation</span>
-            </a>
-          </li>
+      // 找到页面里所有 .thumb 容器
+      document.querySelectorAll('.thumb').forEach(thumb => {
+        const video = thumb.querySelector('video');
+        thumb.addEventListener('mouseenter', () => {
+          thumb.classList.add('hovering');
+          video.currentTime = 0;
+          video.play();
+        });
+        thumb.addEventListener('mouseleave', () => {
+          thumb.classList.remove('hovering');
+          video.pause();
+          video.currentTime = 0;
+        });
+      });
+    </script>
 
-          <li>
-            <a href="https://er1koenig.github.io/patchbot/">
-              <span>System In-vivo Test</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/patchbot/">project page</a>
-        /
-        <a href="https://er1koenig.github.io/patchbot/">paper</a>
-      </div>
-    </article>
-
-
-  <!-- ========== CFD (3) ========== -->
-    <article class="project cfd">
-      
-      <!-- 图片 / 视频预览区 -->
-      <div class="thumb" id="thumb_cfd">
-        <!-- 封面静态图 -->
-        <img src="images/cfd_cover.png"
-            width="250"
-            class="cover">
-
-        
-        <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
-        <video id="video_cfd" width="250" muted loop preload="metadata">
-          <source src="images/cfd_cover.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/droplet-dynamics/"><h3>Droplet Dynamics</h3></a>
-        <p class="summary">
-          Development of a simulation module for sub‑Kolmogorov deformable droplets coupled with an in‑house Lattice–Boltzmann solver.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
-
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="https://er1koenig.github.io/droplet-dynamics/#error-scheme">
-              <span>Correction Term for Rotation-Induced Geometrical Error</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/droplet-dynamics/">
-              <span>Constant Load Cases</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/droplet-dynamics/">
-              <span>Oblate Rising Bubble</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/droplet-dynamics/#bubble">
-              <span>Droplets in Isotropic Turbulence</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/droplet-dynamics/">project page</a>
-        /
-        <a href="data/bachelor_thesis.pdf">bachelor thesis</a>
-      </div>
-    </article>
-    </tr>
-
-
-    <!-- ========== Comp. Solid Mech (4) ========== -->
-    <article class="project csm">
-      <!-- 左侧缩略图 -->
-      <img src="images/mdsim_cover.png" width=250 class="proj-img">
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/MD-sim/"><h3>Atomistic Simulation of Alloy</h3></a>
-        <p class="summary">
-          Atomistic simulation of a medium‑entropy alloy with a gradient nano‑grained structure under cryogenic‑temperature tensile deformation.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
-
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="">
-              <span>Voronoi Grain Initialization</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <span>Hetero-deformation Induced Hardening</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <span>Grain Rotation Estimation Algorithm</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/MD-sim/">project page</a>
-        /
-        <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">paper</a>
-      </div>
-    </article>
-
-    <!-- ========== Comp. Solid Mech (5) ========== -->
-    <article class="project csm">
-      <!-- 左侧缩略图 -->
-      <img src="images/fesim_cover.png" width=250 class="proj-img">
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/FE-Sintering/"><h3>Finite Element Simulation of Sintering</h3></a>
-        <p class="summary">
-          Abaqus models with custom UMAT scripts for flash and ultra‑high‑speed sintering, calibrated against experimental data.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
-
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="">
-              <span>UMAT Scripting for Grain Growth</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <span>Temperature Prediction of UHS Sintering</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <span>Iterative Parameter Calibration Algorithm Based on Damped-Newton Method</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/FE-Sintering/">project page</a>
-      </div>
-    </article>
-
-    <!-- ========== Comp. Solid Mech (6) ========== -->
-    <article class="project csm">
-
-      <!-- 图片 / 视频预览区 -->
-      <div class="thumb" id="thumb_pf">
-        <!-- 封面静态图 -->
-        <img src="images/pfsim_cover.png"
-            width="250"
-            class="cover">
-
-        
-        <!-- 预览视频（默认隐藏；只在 hover 时播放并显露） -->
-        <video id="video_pf" width="250" muted loop preload="metadata">
-          <source src="images/pfsim_cover.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-          
-          
-      </div>
-    
-      <!-- 右侧文字区 -->
-      <div class="proj-content">
-        <a href="https://er1koenig.github.io/PF-Sintering/"><h3>Phase Field Simulation of Sintering</h3></a>
-        <p class="summary">
-          Phase‑field study of solid‑state sintering that visualises how neighbouring powder grains neck, densify, and rotate—revealing the microstructural physics of porosity loss.
-        </p>
-    
-        <!-- 1*3 highlight 带缩略图 -->
-        <span class="highlight-title">Highlights:</span>
-
-        <!-- 纵向 1×3 高亮 -->
-        <ul class="highlights">
-          <li>
-            <a href="https://er1koenig.github.io/PF-Sintering/">
-              <span>Cahn-Hillard Equation for Mass Transport</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/PF-Sintering/">
-              <span>Allen-Cahn Equation for Grain Rotation</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://er1koenig.github.io/PF-Sintering/#demo">
-              <span>Four-grain Sintering Case</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Project page, paper -->
-        <p></p>
-        <a href="https://er1koenig.github.io/PF-Sintering/">project page</a>
-        /
-        <a href="https://github.com/Er1koenig/PF-Sintering/blob/main/original_script">code</a>
-      </div>
-    </article>
-  </div>
-
-
-
-
-<!-- === awards section === -->
-<section id="awards" class="container" style="margin-top:2rem;">
-  <h2 class="section-title">Awards</h2>
-
-  <ul class="timeline">
-    <!-- ——— 2023 ——— -->
-    <li>
-      <span class="year">2023</span>
-      <div class="pub-card">
-        <a href="data/bsc_transcript.pdf">
-          <h4>Graduation <em>with distinction</em> — top 0.2%</h4></a>
-        <p><strong>RWTH Aachen · B.Sc. Mechanical Engineering</strong></p>
-      </div>
-    </li>
-
-    <!-- ——— 2022 / 2023 ——— -->
-    <li>
-      <span class="year">2022</span>
-
-      <div class="pub-card">
-        <a href="data/germany scholarship 2022_2023.pdf">
-          <h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
-        <p><em>National merit‑based scholarship</em></p>
-      </div>
-
-      <div class="pub-card">
-        <a href="data/dean's List 2020_2021.pdf">
-          <h4>Dean’s List — top 5 %</h4></a>
-        <p><strong>RWTH Aachen</strong></p>
-      </div>
-    </li>
-
-    <!-- ——— 2021 ——— -->
-    <li>
-      <span class="year">2021</span>
-      <div class="pub-card">
-        <a href="data/dean's list 2019_2020.pdf">
-          <h4>Dean’s List — top 5 %</h4></a>
-        <p><strong>RWTH Aachen</strong></p>
-      </div>
-    </li>
-
-    <!-- ——— 2020 ——— -->
-    <li>
-      <span class="year">2020</span>
-      <div class="pub-card" style="margin-top:.8rem">
-        <a href="data/germany scholarship 2020_2021.pdf">
-          <h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
-        <p><em>National merit‑based scholarship</em></p>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<script>
-
-  document.querySelectorAll('.bib-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      navigator.clipboard.writeText(btn.dataset.bib)
-        .then(()=>{
-          const old = btn.textContent;
-          btn.textContent = '✓ Copied!';
-          setTimeout(()=> btn.textContent = old, 1500);
-        })
-        .catch(()=> alert('Copy failed 😢'));
-    });
-  });
-
-  /* Scroll‑Spy（如果已加，可跳过）*/
-  const links = [...document.querySelectorAll('.nav-link')];
-  const sections = [...document.querySelectorAll('section[id]')].sort(
-    (a,b) => a.offsetTop - b.offsetTop
-  );
-
-  function onScroll(){
-    const pos = window.scrollY + 140;          // 140 = 顶栏 56 + 一点缓冲
-    let cur = sections[0];
-
-    for(const s of sections){
-      if(pos >= s.offsetTop) cur = s;
-      else break;
-    }
-    links.forEach(a =>
-      a.classList.toggle('active', a.hash.slice(1) === cur.id)
-    );
-  }
-  window.addEventListener('scroll', onScroll);
-  onScroll();
-
-  // 找到页面里所有 .thumb 容器
-  document.querySelectorAll('.thumb').forEach(thumb => {
-    const video = thumb.querySelector('video');
-
-    thumb.addEventListener('mouseenter', () => {
-      thumb.classList.add('hovering');
-      video.currentTime = 0;
-      video.play();
-    });
-
-    thumb.addEventListener('mouseleave', () => {
-      thumb.classList.remove('hovering');
-      video.pause();
-      video.currentTime = 0;
-    });
-  });
-
-</script>
-
-<div class="credit">
-  thanks for 
-  <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">
-    John Barron's template
-  </a>
-</div>
-
-</body>
+    <div class="credit">
+      thanks for
+      <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">John Barron's template</a>
+    </div>
+  </body>
 </html>
