@@ -79,7 +79,7 @@
       p { margin: 0 0 0.9rem; text-wrap: pretty; }
 
       /* nav */
-      #top-nav { top: 0; left: 0; right: 0; height: 56px; padding: 0 36px; background: transparent; display: flex; align-items: center; z-index: 1000; }
+      #top-nav { height: 56px; display: flex; align-items: center; z-index: 1000; }
       #top-nav ul { display: flex; justify-content: center; gap: 2rem; margin: 0; padding: 0; list-style: none; }
       .nav-link { position: relative; color: #4b5563; font-size: clamp(.92rem, .2vw + .84rem, 1rem); font-weight: 500; text-decoration: none; opacity: .95; letter-spacing: .02em; transition: color .25s, opacity .25s; }
       .nav-link:hover, .nav-link.active { color: var(--theme-color); opacity: 1; font-weight: 600; text-decoration: none; }
@@ -95,7 +95,7 @@
       .project-list { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2rem; }
       .project { border-left: 4px solid var(--theme-color); border-radius: 12px; background: var(--clr-surface); box-shadow: 0 1px 3px rgba(0,0,0,.05), 0 4px 8px rgba(0,0,0,.04); transition: transform .25s ease, box-shadow .25s ease; display: flex; align-items: flex-start; gap: 1rem; padding: .5rem .7rem .7rem 1.1rem; }
       .project:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
-      .proj-img { flex: 0 0 250px; max-width: 40vw; width: 255px; height: auto; object-fit: cover; border-radius: 8px; }
+      .proj-img { flex: 0 0 250px; width: 255px; height: auto; object-fit: cover; border-radius: 8px; }
       .proj-content { flex: 1 1 auto; }
       .project h3 { font-family: var(--font-serif-head); font-weight: 600; letter-spacing: .006em; font-size: clamp(1.05rem, 0.6vw + 1rem, 1.28rem); }
       .summary { margin: 0 0 .6rem; }
@@ -118,7 +118,7 @@
         background:url(/images/hero_bg.jpg) center/cover fixed; text-shadow: 0 0 8px rgba(243, 242, 227, .25); position:relative; }
       .hero::before{ content:""; position:absolute; inset:0; background: radial-gradient(110% 80% at 50% 46%, rgba(0,0,0,.12) 0%, rgba(0,0,0,.32) 52%, rgba(0,0,0,.6) 100%); mix-blend-mode:multiply; }
       .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,47,91,.14) 0%, rgba(11,47,91,.18) 55%, rgba(11,47,91,.14) 100%); box-shadow: inset 0 0 80px rgba(0,0,0,.18); backdrop-filter: brightness(.94) contrast(1.05) saturate(92%); -webkit-backdrop-filter: brightness(.94) contrast(1.05) saturate(92%); }
-      .hero-inner { position: relative; z-index: 1; }
+      .hero-inner { position: relative; z-index: 1; padding: 0 1rem; }
       .hero h1 { font-family: var(--font-serif-head); font-size: clamp(2.6rem, 4.8vw, 4.6rem); margin: 0; font-weight: 700; }
       .tagline { font-size: clamp(1.05rem, 0.6vw + 0.9rem, 1.3rem); letter-spacing: .5px; margin-top: .4rem; }
       .scroll-down { display: inline-block; margin-top: 1.4rem; font-size: 1.4rem; color: #F3F2E3; text-decoration: none; animation: scrollHint 1.2s infinite; }
@@ -145,7 +145,7 @@
       body:not(.scrolled) #site-header{background:linear-gradient(180deg,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.58)) 0%,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.48)) 100%);border-bottom-color:color-mix(in srgb,var(--theme-color) 12%,rgba(0,0,0,.04));box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.05)}
       body.scrolled #site-header{background:linear-gradient(180deg,color-mix(in srgb,var(--theme-color) 8%,rgba(255,255,255,.90)) 0%,color-mix(in srgb,var(--theme-color) 8%,rgba(255,255,255,.84)) 100%);border-bottom-color:color-mix(in srgb,var(--theme-color) 22%,rgba(0,0,0,.08));box-shadow:0 2px 6px rgba(0,0,0,.06),0 10px 26px rgba(0,0,0,.08)}
     
-      .nav-wrap { margin: 0; height: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.2rem; padding: 0 calc(.25rem + 18px) 0 .25rem; }
+      .nav-wrap { margin: 0; height: 100%; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 1.2rem; padding: 0 calc(.25rem + 18px) 0 .25rem; }
       .spacer{height:1px;} /* 交给 grid 的 1fr 列 */
 
       /* 单按钮主题开关（右上角） */
@@ -163,16 +163,40 @@
       .theme-btn:hover{opacity:1;border-color:rgba(0,0,0,.2)}
       .theme-btn:active{transform:translateY(1px)}
       .theme-btn i{pointer-events:none}
-      
+
       /* Mobile nav */
+      .burger{display:none}
       @media (max-width: 768px) {
-        .burger { width: 24px; height: 18px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; margin-left: 1rem; }
+        /* Burger button */
+        .burger { width: 26px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; margin-left: .3rem; }
         .burger span { height: 3px; background: #333; border-radius: 2px; transition: .35s; }
-        #top-nav ul { position: fixed; top: 56px; right: 0; width: 210px; background: rgba(255,255,255,.96); padding: 1rem 1.4rem; flex-direction: column; gap: 1rem; transform: translateX(100%); box-shadow: -2px 0 8px rgba(0,0,0,.07); }
+        .burger.active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+        /* Slide-in panel */
+        #top-nav ul { position: fixed; top: 60px; right: 0; width: min(88vw, 320px); background: rgba(255,255,255,.96); padding: 1rem 1.4rem; flex-direction: column; gap: 1rem; transform: translateX(100%); box-shadow: -2px 0 12px rgba(0,0,0,.10); z-index: 1200; min-height: calc(100vh - 60px); backdrop-filter: blur(8px) saturate(140%); }
         #top-nav.open ul { transform: none; }
-        #top-nav.open + .burger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-        #top-nav.open + .burger span:nth-child(2) { opacity: 0; }
-        #top-nav.open + .burger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+        /* Layout fixes */
+        .container { padding: 0 1rem; }
+
+        /* Profile: stack columns */
+        #profile table, #profile tbody, #profile tr, #profile td { display: block; width: 100%; }
+        #profile td { padding-right: 0 !important; }
+        #profile .profile-photo { width: min(78vw, 360px); max-width: 100%; margin: .8rem auto 0; display: block; border-radius: 16px; }
+
+        /* Projects: make cards vertical */
+        .project { flex-direction: column; align-items: stretch; }
+        .proj-img, .thumb, .thumb .cover, .thumb video { width: 100% !important; max-width: 100% !important; }
+        .proj-img { height: auto; }
+        .thumb { height: auto; }
+
+        .highlights li { font-size: .85rem; }
+
+        /* Timeline padding tighten */
+        .timeline { padding-left: 2.6rem; }
+        .timeline .year { left: -2.6rem; }
       }
 
       .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
@@ -322,6 +346,12 @@
         color: var(--text);
       }
 
+      /* 深色里的移动菜单样式同步 */
+      @media (max-width: 768px) {
+        :root.dark #top-nav ul { background: color-mix(in srgb, var(--acc) 4%, rgba(18,22,28,.92)); box-shadow: -2px 0 12px rgba(0,0,0,.6); }
+        :root.dark .burger span { background: var(--txt-2); }
+      }
+
       /* 页脚 credit */
       :root.dark .credit, :root.dark .credit a{ color: var(--text-muted-dark); }
       :root.dark .credit a:hover{ color: var(--link-hover-dark); text-decoration: underline transparent;}
@@ -343,7 +373,7 @@
     <!-- site nav -->
     <header id="site-header">
       <div class="nav-wrap">
-        <nav id="top-nav">
+        <nav id="top-nav" aria-label="Primary">
           <ul>
             <li><a class="nav-link" href="#profile">Profile</a></li>
             <li><a class="nav-link" href="#publications">Publications</a></li>
@@ -351,6 +381,11 @@
             <li><a class="nav-link" href="#awards">Awards</a></li>
           </ul>
         </nav>
+
+        <!-- 汉堡按钮（仅移动端显示） -->
+        <button id="burger" class="burger" type="button" aria-label="Open menu" aria-controls="top-nav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
 
         <div class="spacer"></div>
         <!-- 单按钮主题开关：Light → Dark → Auto → Light -->
@@ -624,7 +659,7 @@
       }
       window.addEventListener('scroll', onScroll); onScroll();
 
-      // 缩略图悬停播放视频
+      // 缩略图悬停播放视频（移动端不触发 hover，不影响）
       document.querySelectorAll('.thumb').forEach(thumb => {
         const video = thumb.querySelector('video');
         if (!video) return;
@@ -696,6 +731,40 @@
           const cur = localStorage.getItem(STORAGE_KEY) || 'light';
           if (cur === 'auto') applyTheme('auto', false);
         });
+      })();
+    </script>
+
+    <script>
+      // === Mobile menu toggle ===
+      (function(){
+        const topNav = document.getElementById('top-nav');
+        const burger = document.getElementById('burger');
+        if (!topNav || !burger) return;
+
+        function closeMenu(){
+          topNav.classList.remove('open');
+          burger.classList.remove('active');
+          burger.setAttribute('aria-expanded','false');
+        }
+        function openMenu(){
+          topNav.classList.add('open');
+          burger.classList.add('active');
+          burger.setAttribute('aria-expanded','true');
+        }
+
+        burger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (topNav.classList.contains('open')) closeMenu(); else openMenu();
+        });
+
+        // 点击链接后关闭
+        topNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        // 点击外部区域关闭
+        window.addEventListener('click', (e) => {
+          if (!topNav.contains(e.target) && !burger.contains(e.target)) closeMenu();
+        });
+        // 视口变化时复位
+        window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
       })();
     </script>
 
