@@ -176,7 +176,22 @@
         .burger.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
 
         /* Slide-in panel */
-        #top-nav ul { position: fixed; top: 60px; right: 0; width: min(88vw, 320px); background: rgba(255,255,255,.96); padding: 0 1.4rem; flex-direction: column; gap: 1rem; transform: translateX(100%); box-shadow: -2px 0 12px rgba(0,0,0,.10); z-index: 1200; min-height: calc(100vh - 60px); backdrop-filter: blur(8px) saturate(140%); }
+        #top-nav ul { position: fixed; 
+          top: 60px; 
+          right: 0; 
+          width: min(88vw, 320px); 
+          background: rgba(255,255,255,.96); 
+          padding: 0 1.4rem; 
+          flex-direction: column; 
+          gap: 1rem; 
+          transform: translateX(100%); 
+          box-shadow: -2px 0 12px rgba(0,0,0,.10); 
+          z-index: 1200; 
+          min-height: calc(100vh - 60px); 
+          backdrop-filter: blur(8px) saturate(140%); 
+          font-size: 1.3rem;
+          line-height: 1.6;
+        }
         #top-nav.open ul { transform: none; }
 
         /* Layout fixes */
