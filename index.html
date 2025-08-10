@@ -225,6 +225,19 @@
           margin: .8rem auto 0;          /* 居中 */
           border-radius: 16px;
         }
+
+        /* 只作用于 profile 段落 */
+        #profile p{
+          text-align: justify;        /* 两端对齐 */
+          text-align-last: left;      /* 最后一行保持左对齐，避免诡异拉伸 */
+          hyphens: auto;              /* 自动断词（Chrome/Safari/Firefox） */
+          -webkit-hyphens: auto;
+          overflow-wrap: break-word;  /* 必要时才折词，尽量不把单词掰断 */
+          word-break: normal;
+        }
+
+        /* 避免“联系方式”一行被拉伸 */
+        #profile .contact{ text-align: left; }
       }
 
       .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
