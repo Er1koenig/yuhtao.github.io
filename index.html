@@ -189,8 +189,16 @@
           z-index: 1200; 
           min-height: calc(100vh - 60px); 
           backdrop-filter: blur(8px) saturate(140%); 
-          font-size: 1.3rem;
-          line-height: 1.6;
+        }
+        #top-nav .nav-link{
+          display: flex;               /* 让垂直居中更容易 */
+          align-items: center;
+          font-size: 1.125rem;         /* ≈18px，可按喜好调到 1.2rem */
+          line-height: 1.6;            /* 行距更松 */
+          font-weight: 600;            /* 稍加粗更易读 */
+          letter-spacing: .01em;
+          padding: .55rem 0;           /* 垂直内边距 */
+          min-height: 44px;            /* iOS 推荐的最小触控高度 */
         }
         #top-nav.open ul { transform: none; }
 
