@@ -198,6 +198,33 @@
         /* Timeline padding tighten */
         .timeline { padding-left: 2.6rem; }
         .timeline .year { left: -2.6rem; }
+
+        /* 覆盖内联 width:63%/37% 的影响 */
+        #profile table, 
+        #profile tbody, 
+        #profile tr { 
+          display: block; 
+          width: 100%;
+        }
+
+        #profile td { 
+          display: block;
+          width: 100% !important;        /* 关键：压过内联样式 */
+          padding-right: 0 !important;   /* 去掉文字列的右 padding */
+        }
+
+        #profile td + td { 
+          margin-top: 1rem;              /* 两块之间留点空 */
+        }
+
+        /* 图片放大 + 居中 */
+        #profile .profile-photo {
+          display: block;
+          width: min(82vw, 380px);
+          max-width: 100%;
+          margin: .8rem auto 0;          /* 居中 */
+          border-radius: 16px;
+        }
       }
 
       .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
