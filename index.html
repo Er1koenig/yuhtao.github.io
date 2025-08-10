@@ -176,8 +176,8 @@
       }
 
       .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
-      .credit a { font-size: .7rem; color: inherit; border-bottom: 1px dotted currentColor; transition: none; }
-      .credit a:hover { color: var(--theme-color); }
+      .credit a { font-size: .7rem; color: inherit; border-bottom: 1px dotted currentColor; }
+      .credit a:hover { color: var(--theme-color); text-decoration: underline transparent; }
       
       /* ===== Polished Dark Theme (一致的高级感) ===== */
       :root.dark {
@@ -324,7 +324,7 @@
 
       /* 页脚 credit */
       :root.dark .credit, :root.dark .credit a{ color: var(--text-muted-dark); }
-      :root.dark .credit a:hover{ color: var(--link-hover-dark); text-decoration: none;}
+      :root.dark .credit a:hover{ color: var(--link-hover-dark); text-decoration: underline transparent;}
     </style>
   </head>
 
