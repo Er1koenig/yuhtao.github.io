@@ -238,6 +238,17 @@
 
         /* 避免“联系方式”一行被拉伸 */
         #profile .contact{ text-align: left; }
+
+        /* 让图标后面可以换行（不影响视觉） */
+        #profile .inline-icon + a::before { content: "\200B"; } /* zero-width space */
+        #profile .inline-icon { margin-right: .25em; }          /* 保持一点空隙 */
+
+        #profile p a{
+          white-space: normal;         /* 防止某些库把链接设成 nowrap */
+          overflow-wrap: anywhere;     /* 实在不行就拆 */
+          hyphens: auto;               /* 英文可连字符断词 */
+          -webkit-hyphens: auto;
+        }
       }
 
       .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
