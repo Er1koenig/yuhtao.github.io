@@ -1,442 +1,861 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>TAO Yuhao</title>
-    <meta name="author" content="TAO Yuhao" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="TAO Yuhao" />
+    <meta
+      name="description"
+      content="TAO Yuhao — medical devices, robotics, embedded systems, and computational mechanics."
+    />
+    <title>TAO Yuhao</title>
 
-    <!-- favicon & main stylesheet -->
     <link rel="shortcut icon" href="images/favicon/tau_icon.jpg" type="image/x-icon" />
-    <link rel="stylesheet" href="stylesheet.css" />
-
-    <!-- Better font delivery -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Inter (sans), Lora (serif), Noto Serif SC (CJK headings) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
-
-    <!-- icon font (Font Awesome 6 free) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-RhCeKEeyiLdZ28yY7mVt8XzfnOz2bNqsTP7PvpB3qHwD6PPV6cO9HcL7JQhN4F5m2dlHtb1zGuUHmXn4b8vLAw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
 
-    <!-- refined typography & minimal visual tune-ups on top of your CSS -->
     <style>
       :root {
-        --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
-        --font-serif-head: "Lora", "Noto Serif SC", "Songti SC", STSong, Georgia, "Times New Roman", serif;
-        --theme-color: #0b2f5b;
-        --theme-color-light: #476d96;
-        --theme-color-subtle: #e2e8f4;
-        --clr-surface: #fafbfd;
-        --clr-neutral: #243447;
-        --step--1: clamp(0.88rem, 0.18vw + 0.82rem, 0.96rem);
-        --step-0:  clamp(1.00rem, 0.22vw + 0.94rem, 1.08rem);
-        --step-1:  clamp(1.125rem, 0.32vw + 1.02rem, 1.25rem);
-        --step-2:  clamp(1.35rem, 0.6vw + 1.12rem, 1.55rem);
-        --step-3:  clamp(1.62rem, 0.9vw + 1.24rem, 1.95rem);
-        --step-4:  clamp(2.15rem, 1.6vw + 1.42rem, 2.6rem);
-        --step-5:  clamp(2.8rem,  2.8vw + 1.6rem, 3.6rem);
+        --bg: #f5f1eb;
+        --bg-top: #faf8f4;
+        --surface: rgba(255, 255, 255, 0.62);
+        --surface-strong: rgba(255, 255, 255, 0.78);
+        --text: #131313;
+        --muted: #616975;
+        --muted-2: #8a9198;
+        --line: rgba(17, 17, 17, 0.08);
+        --line-soft: rgba(17, 17, 17, 0.05);
+        --accent: #6b7f92;
+        --accent-soft: #eef3f7;
+        --shadow: 0 10px 28px rgba(17, 17, 17, 0.04), 0 2px 8px rgba(17, 17, 17, 0.03);
+        --radius-xl: 28px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+        --radius-pill: 999px;
+        --content: 1040px;
       }
 
-      html { scroll-behavior: smooth; }
-      html { font-size: 16px; }
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: var(--font-sans);
-        font-size: var(--step-0);
-        line-height: 1.7;
-        letter-spacing: 0.01em;
-        color: var(--clr-neutral);
-        background: #fff;
         margin: 0;
-        padding-top: 56px;
+        overflow-x: hidden;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--text);
+        line-height: 1.68;
+        letter-spacing: -0.01em;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-kerning: normal;
-        font-feature-settings: "liga" 1, "calt" 1;
         text-rendering: optimizeLegibility;
+        background:
+          radial-gradient(1200px 700px at 10% -10%, rgba(169, 183, 196, 0.14), transparent 55%),
+          radial-gradient(900px 560px at 100% 0%, rgba(221, 207, 193, 0.16), transparent 52%),
+          linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 100%);
       }
 
-      a { color: var(--theme-color-light); text-decoration: underline transparent 2px; text-underline-offset: 3px; transition: color .2s, text-decoration-color .2s;}
-      a:hover { color: var(--theme-color); text-decoration-color: var(--theme-color); text-decoration: underline 2px; text-underline-offset: 3px;}
-
-      h1, h2, h3 { font-family: var(--font-serif-head); font-weight: 600; line-height: 1.25; letter-spacing: .005em; }
-      h1 { font-size: var(--step-5); margin: 0 0 .4rem; }
-      h2 { font-size: var(--step-3); margin: 0 0 .6rem; }
-      h3 { font-size: var(--step-1); margin: 0 0 .35rem; }
-
-      .section-title { position: relative; font-size: var(--step-2); margin: 3rem 0 1.1rem; }
-      .section-title::after { content: ""; position: absolute; left: 0; bottom: -.45rem; width: 3rem; height: 3px; background: var(--theme-color); border-radius: 1px; }
-
-      .container { max-width: 1000px; margin: 0 auto; padding: 0 1.1rem; }
-      section[id] { scroll-margin-top: 72px; }
-      .name { font-family: var(--font-serif-head); font-size: var(--step-3); font-weight: 700; text-align: left; margin: 0 0 .6rem; }
-      p { margin: 0 0 0.9rem; text-wrap: pretty; font-family: 'Lato', Verdana, Helvetica, sans-serif; font-size: 14px;}
-
-      /* nav */
-      #top-nav { height: 56px; display: flex; align-items: center; z-index: 1000; padding-left:36px;}
-      #top-nav ul { display: flex; justify-content: center; gap: 2rem; margin: 0; padding: 0; list-style: none; }
-      .nav-link { position: relative; color: #4b5563; font-size: clamp(.92rem, .2vw + .84rem, 1rem); font-weight: 500; text-decoration: none; opacity: .95; letter-spacing: .02em; transition: color .25s, opacity .25s; }
-      .nav-link:hover, .nav-link.active { color: var(--theme-color); opacity: 1; font-weight: 600; text-decoration: none; }
-      .nav-link::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 0; height: 2px; border-radius: 1px; background: var(--theme-color); transition: width .35s cubic-bezier(.55,.08,.46,.95), left .35s cubic-bezier(.55,.08,.46,.95); }
-      .nav-link:hover::after, .nav-link.active::after { width: 100%; left: 0; }
-
-      .inline-icon { height: 1em; width: auto; vertical-align: -.15em; margin-right: .25em; border-radius: 2px;}
-      .icon-img { height: 1.2rem; width: auto; vertical-align: -.2em; margin-right: .3em; border-radius: 3px;}
-      .contact { margin-top: 1.1rem; font-size: var(--step--1); }
-      .contact a { text-decoration: underline transparent 2px; text-underline-offset: 2px; }
-      .contact a:hover { text-decoration-color: var(--theme-color); }
-
-      .project-list { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2rem; }
-      .project { border-left: 4px solid var(--theme-color); border-radius: 12px; background: var(--clr-surface); box-shadow: 0 1px 3px rgba(0,0,0,.05), 0 4px 8px rgba(0,0,0,.04); transition: transform .25s ease, box-shadow .25s ease; display: flex; align-items: flex-start; gap: 1rem; padding: .5rem .7rem .7rem 1.1rem; }
-      .project:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
-      .proj-img { flex: 0 0 250px; width: 255px; height: auto; object-fit: cover; border-radius: 8px; }
-      .proj-content { flex: 1 1 auto; }
-      .project h3 { font-family: var(--font-serif-head); font-weight: 600; letter-spacing: .006em; font-size: clamp(1.05rem, 0.6vw + 1rem, 1.28rem); }
-      .summary { margin: 0 0 .6rem; }
-
-      .thumb { position: relative; width: 255px; cursor: pointer; }
-      .thumb .cover { display: block; width: 255px; border-radius: 8px; }
-      .thumb video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; transition: opacity .25s; border-radius: 8px; }
-      .thumb.hovering video { opacity: 1; }
-      .thumb.hovering .cover { opacity: 0; }
-
-      .highlight-title { font-weight: 600; white-space: nowrap; font-size: var(--step--1); }
-      .highlights { display: flex; flex-wrap: wrap; gap: .4rem .6rem; padding: 0; margin: .2rem 0 0; }
-      .highlights li { list-style: none; background: var(--theme-color-subtle); border-radius: 9999px; padding: .12rem .6rem; color: var(--theme-color); font-size: .9rem; line-height: 1.5; font-weight: 600; letter-spacing: .02em; }
-      .highlights li:hover { background: #cfd8e9; }
-      .highlights li::before { content: "• "; }
-      .highlights a { text-decoration: none; color: inherit; }
-      .highlights a[target="_blank"]::after { content: '↗'; font-size: .75em; margin-left: .15em; }
-
-      .hero{ height:100vh; min-height:clamp(560px,100vh,880px); display:flex; justify-content:center; align-items:center; text-align:center; color:#F3F2E3;
-        background:url(/images/hero_bg.jpg) center/cover fixed; text-shadow: 0 0 8px rgba(243, 242, 227, .25); position:relative; }
-      .hero::before{ content:""; position:absolute; inset:0; background: radial-gradient(110% 80% at 50% 46%, rgba(0,0,0,.12) 0%, rgba(0,0,0,.32) 52%, rgba(0,0,0,.6) 100%); mix-blend-mode:multiply; }
-      .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,47,91,.14) 0%, rgba(11,47,91,.18) 55%, rgba(11,47,91,.14) 100%); box-shadow: inset 0 0 80px rgba(0,0,0,.18); backdrop-filter: brightness(.94) contrast(1.05) saturate(92%); -webkit-backdrop-filter: brightness(.94) contrast(1.05) saturate(92%); }
-      .hero-inner { position: relative; z-index: 1; padding: 0 1rem; }
-      .hero h1 { font-family: var(--font-serif-head); font-size: clamp(2.6rem, 4.8vw, 4.6rem); margin: 0; font-weight: 700; }
-      .tagline { font-size: clamp(1.05rem, 0.6vw + 0.9rem, 1.3rem); letter-spacing: .5px; margin-top: .4rem; }
-      .scroll-down { display: inline-block; margin-top: 1.4rem; font-size: 1.4rem; color: #F3F2E3; text-decoration: none; animation: scrollHint 1.2s infinite; }
-      .scroll-down:hover { color: var(--theme-color); }
-      a.scroll-down:hover { text-decoration: none !important; }
-      @keyframes scrollHint { 0%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-      @media (max-width: 768px){ .hero{ background-attachment: scroll; } }
-
-      .profile-photo { width: 100%; max-width: 100%; object-fit: cover; border-radius: 12%; box-shadow: 0 4px 8px rgba(0,0,0,.05); }
-
-      .timeline { position: relative; margin: 0; padding: 0 0 0 3.5rem; list-style: none; }
-      .timeline::before { content: ""; position: absolute; left: 0; width: 0; top: 0; bottom: 0; background: var(--theme-color); }
-      .timeline li { position: relative; margin-bottom: 1.6rem; }
-      .timeline .year { position: absolute; left: -3.4rem; top: 0; font-weight: 600; color: var(--theme-color); font-size: var(--step--1); }
-      .pub-card { background: var(--clr-surface); border-radius: 12px; padding: .85rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,.05); margin-top: .6rem; }
-      .pub-card h4 { font-family: var(--font-serif-head); font-size: clamp(1.02rem, 0.36vw + .95rem, 1.18rem); font-weight: 600; letter-spacing: .015em; margin: 0 0 .25rem; }
-      .pub-card h4 a { color: inherit; text-decoration: none; }
-      .pub-card h4 a:hover { color: var(--theme-color); text-decoration: underline 2px; text-underline-offset: 2px; }
-      .bib-btn { border: none; background: var(--theme-color); color: #fff; font-size: .8rem; padding: .3rem .75rem; border-radius: 6px; cursor: pointer; opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease; }
-      .pub-card:hover .bib-btn { opacity: 1; transform: none; }
-
-      /* Glassy site header */
-      #site-header{position:fixed;top:0;left:0;right:0;height:60px;z-index:1000;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.62));background:linear-gradient(180deg,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.80)) 0%,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.68)) 100%);backdrop-filter:blur(12px) saturate(140%) contrast(1.04);-webkit-backdrop-filter:blur(12px) saturate(140%) contrast(1.04);border-bottom:1px solid color-mix(in srgb,var(--theme-color) 16%,rgba(0,0,0,.06));box-shadow:0 1px 3px rgba(0,0,0,.05),0 8px 20px rgba(0,0,0,.06);transition:background .25s ease,box-shadow .25s ease,border-color .25s ease}
-      body:not(.scrolled) #site-header{background:linear-gradient(180deg,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.58)) 0%,color-mix(in srgb,var(--theme-color) 6%,rgba(255,255,255,.48)) 100%);border-bottom-color:color-mix(in srgb,var(--theme-color) 12%,rgba(0,0,0,.04));box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.05)}
-      body.scrolled #site-header{background:linear-gradient(180deg,color-mix(in srgb,var(--theme-color) 8%,rgba(255,255,255,.90)) 0%,color-mix(in srgb,var(--theme-color) 8%,rgba(255,255,255,.84)) 100%);border-bottom-color:color-mix(in srgb,var(--theme-color) 22%,rgba(0,0,0,.08));box-shadow:0 2px 6px rgba(0,0,0,.06),0 10px 26px rgba(0,0,0,.08)}
-      #site-header .burger { margin-left: -2rem; }           /* 取消左外边距 */
-
-      .nav-wrap { margin: 0; height: 100%; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 1.2rem; padding: 0 calc(.25rem + 18px) 0 .25rem; }
-      .spacer{height:1px;} /* 交给 grid 的 1fr 列 */
-
-      /* 单按钮主题开关（右上角） */
-      .theme-btn{
-        display:inline-flex;align-items:center;justify-content:center;
-        width:36px;height:36px;border-radius:9999px;
-        border:1px solid rgba(0,0,0,.12);
-        background:rgba(255,255,255,.65);
-        backdrop-filter: blur(8px) saturate(140%);
-        -webkit-backdrop-filter: blur(8px) saturate(140%);
-        cursor:pointer; font-size:1rem; line-height:1; color:#333;
-        transition: background .2s, border-color .2s, transform .02s, opacity .2s;
-        opacity:.95;
-      }
-      .theme-btn:hover{opacity:1;border-color:rgba(0,0,0,.2)}
-      .theme-btn:active{transform:translateY(1px)}
-      .theme-btn i{pointer-events:none}
-
-      /* Mobile nav */
-      .burger{display:none}
-      @media (max-width: 768px) {
-        /* Burger button */
-        .burger { width: 26px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; margin-left: .3rem; }
-        .burger span { height: 3px; background: #333; border-radius: 2px; transition: .35s; }
-        .burger.active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
-        .burger.active span:nth-child(2) { opacity: 0; }
-        .burger.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
-
-        /* Slide-in panel */
-        #top-nav ul { position: fixed; 
-          top: 60px; 
-          right: 0; 
-          width: min(88vw, 320px); 
-          background: rgba(255,255,255,.96); 
-          padding: 0 1.4rem; 
-          flex-direction: column; 
-          gap: 1rem; 
-          transform: translateX(100%); 
-          box-shadow: -2px 0 12px rgba(0,0,0,.10); 
-          z-index: 1200; 
-          min-height: calc(100vh - 60px); 
-          backdrop-filter: blur(8px) saturate(140%); 
-        }
-        #top-nav .nav-link{
-          display: flex;               /* 让垂直居中更容易 */
-          align-items: center;
-          font-size: 1.125rem;         /* ≈18px，可按喜好调到 1.2rem */
-          line-height: 1.6;            /* 行距更松 */
-          font-weight: 600;            /* 稍加粗更易读 */
-          letter-spacing: .01em;
-          padding: .55rem 0;           /* 垂直内边距 */
-          min-height: 44px;            /* iOS 推荐的最小触控高度 */
-        }
-        #top-nav.open ul { transform: none; }
-
-        /* Layout fixes */
-        .container { padding: 0 1rem; }
-
-        /* Profile: stack columns */
-        #profile table, #profile tbody, #profile tr, #profile td { display: block; width: 100%; }
-        #profile td { padding-right: 0 !important; }
-        #profile .profile-photo { width: min(78vw, 360px); max-width: 100%; margin: .8rem auto 0; display: block; border-radius: 16px; }
-
-        /* Projects: make cards vertical */
-        .project { flex-direction: column; align-items: stretch; }
-        .proj-img, .thumb, .thumb .cover, .thumb video { width: 100% !important; max-width: 100% !important; }
-        .proj-img { height: auto; }
-        .thumb { height: auto; }
-
-        .highlights li { font-size: .85rem; }
-
-        /* Timeline padding tighten */
-        .timeline { padding-left: 2.6rem; }
-        .timeline .year { left: -2.6rem; }
-
-        /* 覆盖内联 width:63%/37% 的影响 */
-        #profile table, 
-        #profile tbody, 
-        #profile tr { 
-          display: block; 
-          width: 100%;
-        }
-
-        #profile td { 
-          display: block;
-          width: 100% !important;        /* 关键：压过内联样式 */
-          padding-right: 0 !important;   /* 去掉文字列的右 padding */
-        }
-
-        #profile td + td { 
-          margin-top: 1rem;              /* 两块之间留点空 */
-        }
-
-        /* 图片放大 + 居中 */
-        #profile .profile-photo {
-          display: block;
-          width: min(82vw, 380px);
-          max-width: 100%;
-          margin: .8rem auto 0;          /* 居中 */
-          border-radius: 16px;
-        }
-
-        /* 只作用于 profile 段落 */
-        #profile p{
-          text-align: justify;        /* 两端对齐 */
-          text-align-last: left;      /* 最后一行保持左对齐，避免诡异拉伸 */
-          hyphens: auto;              /* 自动断词（Chrome/Safari/Firefox） */
-          -webkit-hyphens: auto;
-          overflow-wrap: break-word;  /* 必要时才折词，尽量不把单词掰断 */
-          word-break: normal;
-        }
-
-        /* 避免“联系方式”一行被拉伸 */
-        #profile .contact{ text-align: left; }
+      ::selection {
+        background: rgba(107, 127, 146, 0.18);
       }
 
-      .credit { position: fixed; bottom: 12px; right: 16px; font-size: .7rem; color: #666; opacity: .5; z-index: 2000; }
-      .credit a { font-size: .7rem; color: inherit; border-bottom: 1px dotted currentColor; }
-      .credit a:hover { color: var(--theme-color); text-decoration: underline transparent; }
-      
-      /* ===== Polished Dark Theme (一致的高级感) ===== */
-      :root.dark {
-        color-scheme: dark;
-
-        /* —— Base palette —— */
-        --bg-0: #0b0f14;         /* 页面背景：深石墨 */
-        --bg-1: #0f141b;         /* 次级背景：略抬升 */
-        --bg-2: #121922;         /* 卡片背景 */
-        --bg-3: #16202b;         /* 更高一层卡片 */
-        --line-1: #1f2a36;       /* 细边框/分隔线 */
-        --line-2: #253343;       /* 次边框 */
-
-        --txt-1: #e8edf6;        /* 主文本（高对比） */
-        --txt-2: #b6c2d0;        /* 次级文本 */
-        --txt-3: #8291a3;        /* 说明文字 */
-
-        --acc:   #7aa2ff;        /* 学术蓝（主色） */
-        --acc-2: #a9c3ff;        /* 悬停/高亮 */
-        --acc-ink: color-mix(in srgb, var(--acc) 35%, white); /* 低饱和文字点缀 */
-
-        /* 阴影：克制 + 质感 */
-        --shadow-elev: 0 1px 0 rgba(255,255,255,.02) inset,
-                      0 12px 38px rgba(0,0,0,.55),
-                      0 3px 10px rgba(0,0,0,.35);
-
-        /* 组件 token（统一引用） */
-        --bg: var(--bg-0);
-        --surface: var(--bg-2);
-        --surface-2: var(--bg-3);
-        --border: var(--line-1);
-        --text: var(--txt-1);
-        --muted: var(--txt-2);
-        --muted-2: var(--txt-3);
-
-        /* 主题色（与浅色模式保持家族感） */
-        --theme-color: var(--acc);
-        --theme-color-light: var(--acc-2);
-        --theme-color-subtle: color-mix(in srgb, var(--acc) 16%, var(--bg-1));
+      img,
+      video {
+        display: block;
+        max-width: 100%;
       }
 
-      /* 页面与基础文本 */
-      :root.dark body{
-        background: var(--bg);
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease,
+          opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      p {
+        margin: 0 0 0.95rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      strong {
+        font-weight: 600;
+      }
+
+      .container {
+        width: min(var(--content), calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      section[id] {
+        scroll-margin-top: 100px;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid transparent;
+        background: rgba(250, 248, 244, 0.68);
+        backdrop-filter: blur(16px) saturate(120%);
+        -webkit-backdrop-filter: blur(16px) saturate(120%);
+        transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .site-header.scrolled {
+        background: rgba(250, 248, 244, 0.86);
+        border-bottom-color: var(--line);
+        box-shadow: 0 8px 22px rgba(17, 17, 17, 0.03);
+      }
+
+      .site-header-inner {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+        white-space: nowrap;
+      }
+
+      #top-nav {
+        margin-left: auto;
+      }
+
+      #top-nav ul {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.66rem 0.94rem;
+        border-radius: var(--radius-pill);
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
         color: var(--text);
+        background: rgba(255, 255, 255, 0.88);
       }
 
-      /* 链接（与浅色同调、但更丝滑） */
-      :root.dark a{
-        color: var(--acc-2);
-        text-decoration: underline transparent 2px;
-        text-underline-offset: 3px;
-        text-decoration-skip-ink: auto;
+      .menu-toggle {
+        display: none;
+        position: relative;
+        margin-left: auto;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.78);
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
       }
-      :root.dark a:hover{
-        text-decoration: underline 2px;
-        text-underline-offset: 3px;
-        color: var(--acc);
-        text-decoration-color: var(--acc);
+
+      .menu-toggle span {
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        border-radius: 999px;
+        background: var(--text);
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
-      /* 选中态（selection） */
-      :root.dark ::selection{
-        background: color-mix(in srgb, var(--acc) 28%, transparent);
+
+      .menu-toggle span:nth-child(1) {
+        transform: translateY(-5px);
+      }
+
+      .menu-toggle span:nth-child(2) {
+        transform: translateY(0);
+      }
+
+      .menu-toggle span:nth-child(3) {
+        transform: translateY(5px);
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(0) rotate(-45deg);
+      }
+
+      .hero {
+        padding: clamp(38px, 6vw, 68px) 0 40px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.78fr);
+        gap: clamp(26px, 4vw, 46px);
+        align-items: center;
+        min-height: calc(78svh - 110px);
+      }
+
+      .hero-copy {
+        max-width: 640px;
+      }
+
+      .kicker {
+        margin-bottom: 16px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-size: clamp(2.5rem, 5.6vw, 4.35rem);
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        font-weight: 700;
+        text-wrap: balance;
+      }
+
+      .hero-cn {
+        margin-top: 10px;
+        font-size: 0.98rem;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      .hero-lead {
+        margin-top: 24px;
+        max-width: 54ch;
+        font-size: clamp(1rem, 1.2vw, 1.1rem);
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0.78rem 1.06rem;
+        border-radius: var(--radius-pill);
+        font-weight: 600;
+        font-size: 0.94rem;
+      }
+
+      .btn-primary {
+        color: #ffffff;
+        background: #111111;
+        box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
         color: var(--text);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.72);
       }
 
-      /* 顶部导航与激活态（学术蓝细线） */
-      :root.dark .nav-link{ color: var(--muted); text-decoration:none; }
-      :root.dark .nav-link:hover,
-      :root.dark .nav-link.active{ color: var(--acc-2); text-decoration:none; }
-      :root.dark .nav-link::after{ background: var(--acc); }
-
-      /* 玻璃态 Header：更克制、更深背景 + 清晰分隔线 */
-      :root.dark #site-header{
-        background: linear-gradient(
-          180deg,
-          color-mix(in srgb, var(--acc) 10%, rgba(11,15,20,.78)) 0%,
-          color-mix(in srgb, var(--acc) 10%, rgba(11,15,20,.70)) 100%
-        );
-        border-bottom: 1px solid color-mix(in srgb, var(--acc) 22%, rgba(255,255,255,.08));
-        box-shadow: 0 1px 3px rgba(0,0,0,.5), 0 10px 26px rgba(0,0,0,.42);
-      }
-      :root.dark body.scrolled #site-header{
-        background: linear-gradient(
-          180deg,
-          color-mix(in srgb, var(--acc) 12%, rgba(11,15,20,.86)) 0%,
-          color-mix(in srgb, var(--acc) 12%, rgba(11,15,20,.80)) 100%
-        );
-        border-bottom-color: color-mix(in srgb, var(--acc) 32%, rgba(255,255,255,.10));
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.9);
       }
 
-      /* 卡片 / 项目 / 出版物：层次与细边框 */
-      :root.dark .project,
-      :root.dark .pub-card{
+      .hero-panel,
+      .profile-copy,
+      .profile-panel,
+      .project-card,
+      .paper-card,
+      .award-card {
         background: var(--surface);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-elev);
-      }
-      :root.dark .project{ border-left: 4px solid color-mix(in srgb, var(--acc) 24%, var(--line-1)); }
-      :root.dark .summary{ color: var(--muted); }
-
-      /* 时间线与年份（克制染色） */
-      :root.dark .timeline::before{ background: var(--line-2); }
-      :root.dark .timeline .year{
-        color: color-mix(in srgb, var(--acc) 55%, var(--muted));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
       }
 
-      /* 高亮 chips：丝滑的低饱和蓝背景，hover 微提亮 */
-      :root.dark .highlights li{
-        background: color-mix(in srgb, var(--acc) 18%, var(--bg-1));
-        color: var(--acc-ink);
-        border: 1px solid color-mix(in srgb, var(--acc) 12%, var(--line-1));
+      .hero-panel {
+        padding: 16px;
+        border-radius: var(--radius-xl);
+        background: var(--surface-strong);
       }
-      :root.dark .highlights li:hover{
-        background: color-mix(in srgb, var(--acc) 26%, var(--bg-1));
-        border-color: color-mix(in srgb, var(--acc) 24%, var(--line-1));
-      }
-      :root.dark .highlights a { text-decoration: none; color: inherit; }
 
-      /* 英雄区覆盖层：降低杂色、增强层次与可读性 */
-      :root.dark .hero{ color: #eef2f7; text-shadow: 0 1px 14px rgba(0,0,0,.28); }
-      :root.dark .hero::before{
-        background: radial-gradient(110% 80% at 50% 46%,
-          rgba(0,0,0,.12) 0%,
-          rgba(0,0,0,.28) 52%,
-          rgba(0,0,0,.55) 100%);
+      .portrait-shell {
+        overflow: hidden;
+        border-radius: 22px;
+        aspect-ratio: 4 / 5;
+        background: #e7e0d6;
       }
-      :root.dark .hero::after{
-        background: linear-gradient(
-          180deg,
-          color-mix(in srgb, var(--acc) 18%, rgba(8,12,16,.70)) 0%,
-          color-mix(in srgb, var(--acc) 18%, rgba(8,12,16,.80)) 55%,
-          rgba(8,12,16,.88) 100%
-        );
-      }
-      :root.dark .scroll-down{ color: #eef2f7;}
 
-      /* 主题按钮：与暗玻璃协调 */
-      :root.dark .theme-btn{
-        background: rgba(18,22,28,.72);
-        border-color: rgba(255,255,255,.12);
+      .hero-portrait {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .meta-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px 2px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .meta-row:last-child {
+        border-bottom: none;
+        padding-bottom: 4px;
+      }
+
+      .meta-row span {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .meta-row strong {
+        max-width: 220px;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        text-align: right;
+      }
+
+      .section {
+        padding: 34px 0 0;
+      }
+
+      .section-head {
+        margin-bottom: 20px;
+      }
+
+      .section-label {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .section-title {
+        margin: 0;
+        max-width: 18ch;
+        font-size: clamp(1.7rem, 2.6vw, 2.45rem);
+        line-height: 1.08;
+        letter-spacing: -0.045em;
+        text-wrap: balance;
+      }
+
+      .rich-text a,
+      .paper-meta a,
+      .award-meta a {
+        color: var(--accent);
+        border-bottom: 1px solid rgba(107, 127, 146, 0.3);
+      }
+
+      .rich-text a:hover,
+      .paper-meta a:hover,
+      .award-meta a:hover {
+        color: var(--text);
+        border-bottom-color: rgba(17, 17, 17, 0.24);
+      }
+
+      .profile-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.34fr) minmax(280px, 0.8fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .profile-copy {
+        padding: 26px 28px;
+        border-radius: var(--radius-xl);
+      }
+
+      .profile-copy p {
+        color: var(--text);
+        font-size: 0.98rem;
+      }
+
+      .profile-panel {
+        position: sticky;
+        top: 92px;
+        padding: 24px;
+        border-radius: var(--radius-xl);
+      }
+
+      .fact-block + .fact-block {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .fact-label {
+        margin-bottom: 7px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .fact-value {
+        font-size: 0.95rem;
         color: var(--text);
       }
 
-      /* 深色里的移动菜单样式同步 */
-      @media (max-width: 768px) {
-        :root.dark #top-nav ul { background: color-mix(in srgb, var(--acc) 4%, rgba(18,22,28,.92)); box-shadow: -2px 0 12px rgba(0,0,0,.6); }
-        :root.dark .burger span { background: var(--txt-2); }
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.94rem;
       }
 
-      /* 页脚 credit */
-      :root.dark .credit, :root.dark .credit a{ color: var(--text-muted-dark); }
-      :root.dark .credit a:hover{ color: var(--link-hover-dark); text-decoration: underline transparent;}
+      .contact-row .sep {
+        color: var(--muted-2);
+      }
+
+      .contact-row a {
+        color: var(--text);
+        border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+      }
+
+      .contact-row a:hover {
+        color: var(--accent);
+        border-bottom-color: rgba(107, 127, 146, 0.34);
+      }
+
+      .aside-note {
+        margin-top: 14px;
+        font-size: 0.88rem;
+        color: var(--muted-2);
+      }
+
+      .timeline-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 66px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .timeline-year {
+        padding-top: 14px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .paper-card,
+      .award-card {
+        padding: 20px 22px;
+        border-radius: 22px;
+      }
+
+      .paper-title,
+      .award-title {
+        margin: 0 0 8px;
+        font-size: 1.08rem;
+        line-height: 1.34;
+        letter-spacing: -0.025em;
+      }
+
+      .paper-title a:hover,
+      .award-title a:hover {
+        color: var(--accent);
+      }
+
+      .paper-meta,
+      .award-meta {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .paper-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .bib-btn,
+      .secondary-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0.66rem 0.94rem;
+        border-radius: var(--radius-pill);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .bib-btn {
+        border: none;
+        color: #ffffff;
+        background: #111111;
+        cursor: pointer;
+      }
+
+      .bib-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .secondary-link {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--text);
+      }
+
+      .secondary-link:hover {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .project-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .project-card {
+        display: grid;
+        grid-template-columns: minmax(250px, 310px) minmax(0, 1fr);
+        gap: 20px;
+        padding: 20px;
+        border-radius: var(--radius-xl);
+      }
+
+      .project-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        aspect-ratio: 4 / 3;
+        background: #e8e1d7;
+      }
+
+      .project-media img,
+      .project-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .thumb {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .thumb .cover,
+      .thumb video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .thumb video {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .thumb.hovering video {
+        opacity: 1;
+      }
+
+      .thumb.hovering .cover {
+        opacity: 0;
+      }
+
+      .project-type {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .project-title {
+        margin: 0 0 4px;
+        font-size: clamp(1.18rem, 1.8vw, 1.42rem);
+        line-height: 1.18;
+        letter-spacing: -0.035em;
+      }
+
+      .project-title a:hover {
+        color: var(--accent);
+      }
+
+      .project-status {
+        margin-bottom: 12px;
+        color: var(--muted-2);
+        font-size: 0.9rem;
+      }
+
+      .summary {
+        margin-bottom: 16px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 16px;
+      }
+
+      .highlights li {
+        margin: 0;
+      }
+
+      .highlights a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0.46rem 0.74rem;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.86rem;
+        font-weight: 600;
+      }
+
+      .highlights a:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .text-link {
+        color: var(--text);
+        font-weight: 600;
+        font-size: 0.92rem;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+      }
+
+      .text-link:hover {
+        color: var(--accent);
+        border-bottom-color: rgba(107, 127, 146, 0.3);
+      }
+
+      .footer {
+        padding: 46px 0 32px;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted-2);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1024px) {
+        .hero-inner,
+        .profile-grid,
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-inner {
+          min-height: auto;
+        }
+
+        .hero-panel {
+          max-width: 500px;
+        }
+
+        .profile-panel {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(var(--content), calc(100% - 32px));
+        }
+
+        .site-header-inner {
+          min-height: 66px;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        #top-nav {
+          position: fixed;
+          top: 78px;
+          left: 16px;
+          right: 16px;
+          margin-left: 0;
+          padding: 12px;
+          border: 1px solid var(--line);
+          border-radius: 22px;
+          background: rgba(250, 248, 244, 0.96);
+          box-shadow: var(--shadow);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-8px);
+          transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+        }
+
+        #top-nav.open {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        #top-nav ul {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .nav-link {
+          justify-content: flex-start;
+          min-height: 44px;
+          padding-inline: 0.9rem;
+        }
+
+        .hero {
+          padding-top: 28px;
+        }
+
+        .hero-title {
+          font-size: clamp(2.35rem, 14vw, 3.4rem);
+        }
+
+        .section,
+        .footer {
+          padding-top: 30px;
+        }
+
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .timeline-year {
+          padding-top: 0;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <span id="top"></span>
+    <header id="site-header" class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="#top">TAO YUHAO</a>
 
-    <!-- hero -->
-    <header class="hero">
-      <div class="hero-inner">
-        <h1>TAO Yuhao</h1>
-        <p class="tagline">Medical Devices | Robotics</p>
-        <a href="#profile" class="scroll-down">▼</a>
-      </div>
-    </header>
+        <button
+          id="menu-toggle"
+          class="menu-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="top-nav"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
 
-    <!-- site nav -->
-    <header id="site-header">
-      <div class="nav-wrap">
         <nav id="top-nav" aria-label="Primary">
           <ul>
             <li><a class="nav-link" href="#profile">Profile</a></li>
@@ -445,398 +864,579 @@
             <li><a class="nav-link" href="#awards">Awards</a></li>
           </ul>
         </nav>
-
-        <!-- 汉堡按钮（仅移动端显示） -->
-        <button id="burger" class="burger" type="button" aria-label="Open menu" aria-controls="top-nav" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-
-        <div class="spacer"></div>
-        <!-- 单按钮主题开关：Light → Dark → Auto → Light -->
-        <button id="theme-btn" class="theme-btn" type="button" aria-label="Theme: Light (click to change)" title="Theme: Light">
-          <span id="theme-ico">☀︎</span>
-        </button>
       </div>
     </header>
 
-    <!-- profile -->
-    <section id="profile" class="container" style="margin-top:2rem;">
-      <table style="width:100%; border:0; border-spacing:0;">
-        <tr>
-          <td style="width:63%; vertical-align:top; padding-right:2rem;">
-            <h1 class="name">TAO Yuhao&nbsp;|&nbsp;陶禹皓</h1>
-
-            <p>
-              I'm a master’s student in <a href="https://master-robotics.ethz.ch/">Robotics, Systems and Control</a> at <img src="images/eth_icon.jpg" class="inline-icon" /><a href="https://ethz.ch/en.html">ETH Zürich</a>, where I develop robots for in-vivo diagnosis at the <img src="images/msrl_icon.jpg" class="inline-icon" /><a href="https://msrl.ethz.ch/">Multi-Scale Robotics Lab (MSRL)</a> advised by <a href="https://msrl.ethz.ch/the-lab/team/Brad_Nelson.html">Professor Bradley Nelson</a>. Previously, I achieved my Bachelor's degree in <a href="https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/studiengaenge/liste-aktuelle-studiengaenge/studiengangbeschreibung/~bnev/maschinenbau-b-sc-/?lidx=1">Mechanical Engineering</a> <strong>with distinction</strong> from <img src="images/rwth_icon.png" class="inline-icon" /><a href="https://www.rwth-aachen.de/cms/~a/root/?lidx=1">RWTH Aachen University</a>.
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <div class="kicker">Medical Devices · Robotics · Embedded Systems</div>
+            <h1 class="hero-title">TAO Yuhao</h1>
+            <div class="hero-cn">陶禹皓</div>
+            <p class="hero-lead">
+              Developing intelligent medical devices for in vivo diagnosis, with a focus on magnetic
+              robots, embedded sensing, and clinically grounded system design.
             </p>
-
-
-             <p>
-              I am interested in developing <strong>intelligent medical devices</strong> that improve human health and well-being. My experience spans in-body medical devices, bioadhesive sensing patches, 3D antenna and embedded systems design, and multi-scale computational mechanics from continuum to atomistic levels.
-            </p>
-
-            <p>
-              In my spare time, I cycle through Switzerland's rolling vistas on my <img src="images/canyon_icon.png" class="inline-icon" />Canyon&nbsp;Aeroad and listen to classical music — from Bach to Rach.
-            </p>
-
-            <div class="contact">
-              <a href="data/TAO Yuhao.pdf"><i class="fa-solid fa-file-lines"></i> CV</a>
-              &nbsp;/&nbsp;
-              <a href=""><i class="fa-brands fa-linkedin"></i><img src="images/gscholar.png" class="icon-img" /></a>
-              &nbsp;/&nbsp;
-              <a href="https://www.linkedin.com/in/yuhao-tao-63b804210/"><i class="fa-brands fa-linkedin"></i><img src="images/linkedin_icon.png" class="icon-img" /></a>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#research">View Research</a>
+              <a class="btn btn-secondary" href="data/TAO Yuhao.pdf" target="_blank" rel="noopener">Download CV</a>
             </div>
-          </td>
-          <td style="width:37%; vertical-align:top;">
-            <img src="images/me-and-einstein.jpg" alt="Yuhao's profile picture" class="profile-photo" />
-          </td>
-        </tr>
-      </table>
-    </section>
+          </div>
 
-    <!-- publications -->
-    <section id="publications" class="container" style="margin-top: 2rem;">
-      <h2 class="section-title">Publications</h2>
-      <ul class="timeline">
-        <li>
-          <span class="year">2023</span>
-          <div class="pub-card">
-            <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">
-              <h4>
-                Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained
-                structure at cryogenic temperature
-              </h4>
-            </a>
-            <p><strong>Frontiers in Materials</strong> · <em>Yuhao Tao, Wenqiang Cheng, Wei Wang</em></p>
-            <button class="bib-btn" data-bib='@article{tao2023MEA,
-              title      = {Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained structure at cryogenic temperature},
-              author     = {Tao Y, Cheng W and Wang W},
-              journal    = {Frontiers in Materials},
-              year       = {2023},
-              doi        = {10.3389/fmats.2022.1118952}
-            }'>BibTeX</button>
-          </div>
-        </li>
-      </ul>
-    </section>
+          <aside class="hero-panel">
+            <div class="portrait-shell">
+              <img
+                src="images/me-and-einstein.jpg"
+                alt="Portrait of Yuhao Tao"
+                class="hero-portrait"
+              />
+            </div>
+            <div class="hero-meta">
+              <div class="meta-row">
+                <span>Current</span>
+                <strong>MSc in Robotics, Systems and Control</strong>
+              </div>
+              <div class="meta-row">
+                <span>Lab</span>
+                <strong>Multi-Scale Robotics Lab, ETH Zürich</strong>
+              </div>
+              <div class="meta-row">
+                <span>Focus</span>
+                <strong>In vivo diagnosis, medical robotics, and embedded sensing</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-    <!-- research -->
-    <section id="research" class="container" style="margin-top: 2rem;">
-      <h2 class="section-title">Research</h2>
-      <div class="project-list">
-        <article class="project med">
-          <img class="proj-img" src="images/bug.jpg" width="250" />
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/origamibot/"><h3>Origami-bot (paper under preparation)</h3></a>
-            <p class="summary">
-              Magnetically navigable, pop-up-fabricated origami capsule robot with an on-board, frequency-reconfigurable 3D electronics component and signal source for channel probing and intestinal monitoring.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>Structure Design</span></a></li>
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>3D Frequency-reconfigurable Electronics Component Design</span></a></li>
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>GHz Frequency Source Design & Integration</span></a></li>
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>Pop-Up Fabrication</span></a></li>
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>Magnetic Navigation</span></a></li>
-              <li><a href="https://er1koenig.github.io/origamibot/"><span>Python + Fortran Magnet Dynamics (Abaqus DLOAD script)</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/origamibot/">project page</a>
-            /
-            <a href="https://er1koenig.github.io/origamibot/">paper</a>
+      <section id="profile" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-label">Profile</span>
+            <h2 class="section-title">Engineering systems for diagnosis inside the human body.</h2>
           </div>
-        </article>
 
-        <article class="project med">
-          <img src="images/bug.jpg" width="250" class="proj-img" />
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/patchbot/"><h3>Patch-bot (paper under preparation)</h3></a>
-            <p class="summary">
-              Magnetic adhesive-patch capsule robot featuring on-board power, Bluetooth communication, and flexible temperature & pH sensors for comfortable and convenient gastric-reflux diagnosis.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>Adhesive Layer Design</span></a></li>
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>Magnetic Layer Design</span></a></li>
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>Embedded System Calibration</span></a></li>
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>System Integration</span></a></li>
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>Magnetic Navigation</span></a></li>
-              <li><a href="https://er1koenig.github.io/patchbot/"><span>FPCB Sensor Calibration</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/patchbot/">project page</a>
-            /
-            <a href="https://er1koenig.github.io/patchbot/">paper</a>
-          </div>
-        </article>
+          <div class="profile-grid">
+            <div class="profile-copy rich-text">
+              <p>
+                I’m a master’s student in
+                <a href="https://master-robotics.ethz.ch/" target="_blank" rel="noopener"
+                  >Robotics, Systems and Control</a
+                >
+                at
+                <a href="https://ethz.ch/en.html" target="_blank" rel="noopener">ETH Zürich</a>,
+                where I develop robots for in vivo diagnosis at the
+                <a href="https://msrl.ethz.ch/" target="_blank" rel="noopener"
+                  >Multi-Scale Robotics Lab (MSRL)</a
+                >,
+                advised by
+                <a
+                  href="https://msrl.ethz.ch/the-lab/team/Brad_Nelson.html"
+                  target="_blank"
+                  rel="noopener"
+                  >Professor Bradley Nelson</a
+                >.
+                Before ETH, I completed my B.Sc. in
+                <a
+                  href="https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/studiengaenge/liste-aktuelle-studiengaenge/studiengangbeschreibung/~bnev/maschinenbau-b-sc-/?lidx=1"
+                  target="_blank"
+                  rel="noopener"
+                  >Mechanical Engineering</a
+                >
+                <strong>with distinction</strong> at
+                <a href="https://www.rwth-aachen.de/cms/~a/root/?lidx=1" target="_blank" rel="noopener"
+                  >RWTH Aachen University</a
+                >.
+              </p>
 
-        <article class="project cfd">
-          <div class="thumb" id="thumb_cfd">
-            <img src="images/cfd_cover.png" width="250" class="cover" />
-            <video id="video_cfd" width="250" muted loop preload="metadata" playsinline>
-              <source src="images/cfd_cover.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/droplet-dynamics/"><h3>Droplet Dynamics</h3></a>
-            <p class="summary">
-              Development of a simulation module for sub-Kolmogorov deformable droplets coupled with an in-house Lattice–Boltzmann solver.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/droplet-dynamics/#error-scheme"><span>Rotation-Induced Geometry Error Correction</span></a></li>
-              <li><a href="https://er1koenig.github.io/droplet-dynamics/"><span>Constant Load Cases</span></a></li>
-              <li><a href="https://er1koenig.github.io/droplet-dynamics/"><span>Oblate Rising Bubble</span></a></li>
-              <li><a href="https://er1koenig.github.io/droplet-dynamics/#bubble"><span>Droplets in Isotropic Turbulence</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/droplet-dynamics/">project page</a>
-            /
-            <a href="data/bachelor_thesis.pdf">bachelor thesis</a>
-          </div>
-        </article>
+              <p>
+                I’m interested in <strong>intelligent medical devices</strong> that make diagnosis and
+                therapy more precise, less invasive, and easier to deploy. My work spans in-body
+                medical robots, bioadhesive sensing patches, 3D electronics and embedded systems, and
+                multi-scale computational mechanics from continuum to atomistic levels.
+              </p>
 
-        <article class="project csm">
-          <div class="thumb" id="thumb_mdsim">
-            <img src="images/mdsim_cover.png" width="250" class="cover" />
-            <video id="video_mdsim" width="250" muted loop preload="metadata" playsinline>
-              <source src="images/mdsim_tensile_small.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/MD-sim/"><h3>Atomistic Simulation of Alloy</h3></a>
-            <p class="summary">
-              Atomistic simulation of a medium-entropy alloy with a gradient nano-grained structure under cryogenic-temperature tensile deformation.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/MD-sim/"><span>Voronoi Grain Initialization</span></a></li>
-              <li><a href="https://er1koenig.github.io/MD-sim/"><span>Hetero-deformation Induced Hardening</span></a></li>
-              <li><a href="https://er1koenig.github.io/MD-sim/#rotation"><span>Grain Rotation Estimation Algorithm</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/MD-sim/">project page</a>
-            /
-            <a href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full">paper</a>
-            /
-            <a href="https://github.com/Er1koenig/MD-sim/blob/main/Rotation_new.m">code</a>
-          </div>
-        </article>
+              <p>
+                Outside the lab, I cycle through Switzerland on a Canyon Aeroad and listen to
+                classical music, especially Bach and Rachmaninoff.
+              </p>
+            </div>
 
-        <article class="project csm">
-          <img src="images/fesim_cover.png" width="250" class="proj-img" />
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/FE-Sintering/"><h3>Finite Element Simulation of Sintering</h3></a>
-            <p class="summary">
-              Abaqus models with custom UMAT scripts for flash and ultra-high-speed sintering, calibrated against experimental data.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/FE-Sintering/"><span>UMAT for Grain Growth</span></a></li>
-              <li><a href="https://er1koenig.github.io/FE-Sintering/"><span>Temperature Prediction of UHS Sintering</span></a></li>
-              <li><a href="https://er1koenig.github.io/FE-Sintering/"><span>Parameter Calibration via Damped-Newton Method</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/FE-Sintering/">project page</a>
-          </div>
-        </article>
+            <aside class="profile-panel">
+              <div class="fact-block">
+                <div class="fact-label">Current role</div>
+                <div class="fact-value">ETH Zürich · MSc in Robotics, Systems and Control</div>
+              </div>
 
-        <article class="project csm">
-          <div class="thumb" id="thumb_pf">
-            <img src="images/pfsim_cover.png" width="250" class="cover" />
-            <video id="video_pf" width="250" muted loop preload="metadata" playsinline>
-              <source src="images/pfsim_cover.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              <div class="fact-block">
+                <div class="fact-label">Research themes</div>
+                <div class="fact-value">
+                  Medical devices, capsule robots, bioadhesive sensing, embedded electronics, and
+                  multi-scale simulation.
+                </div>
+              </div>
+
+              <div class="fact-block">
+                <div class="fact-label">Background</div>
+                <div class="fact-value">RWTH Aachen · Mechanical Engineering · with distinction</div>
+              </div>
+
+              <div class="contact-row">
+                <a href="data/TAO Yuhao.pdf" target="_blank" rel="noopener">CV</a>
+                <span class="sep">/</span>
+                <a
+                  href="https://www.linkedin.com/in/yuhao-tao-63b804210/"
+                  target="_blank"
+                  rel="noopener"
+                  >LinkedIn</a
+                >
+                <!-- 如果你有 Google Scholar，就取消下面这行注释并填上链接 -->
+                <!-- <span class="sep">/</span><a href="https://scholar.google.com/" target="_blank" rel="noopener">Scholar</a> -->
+              </div>
+
+              <div class="aside-note">
+                Interested in building clinically useful systems with clarity, precision, and
+                restraint.
+              </div>
+            </aside>
           </div>
-          <div class="proj-content">
-            <a href="https://er1koenig.github.io/PF-Sintering/"><h3>Phase Field Simulation of Sintering</h3></a>
-            <p class="summary">
-              Phase-field study of solid-state sintering that visualises how neighbouring powder grains neck, densify, and rotate—revealing the microstructural physics of porosity loss.
-            </p>
-            <span class="highlight-title">Highlights:</span>
-            <ul class="highlights">
-              <li><a href="https://er1koenig.github.io/PF-Sintering/"><span>Phase-field Modeling</span></a></li>
-              <li><a href="https://er1koenig.github.io/PF-Sintering/#demo"><span>Multi-grain Sintering Case</span></a></li>
-            </ul>
-            <p></p>
-            <a href="https://er1koenig.github.io/PF-Sintering/">project page</a>
-            /
-            <a href="https://github.com/Er1koenig/PF-Sintering/blob/main/original_script">code</a>
+        </div>
+      </section>
+
+      <section id="publications" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-label">Publications</span>
+            <h2 class="section-title">Selected publication.</h2>
           </div>
-        </article>
+
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <div class="stack">
+                <article class="paper-card">
+                  <h3 class="paper-title">
+                    <a
+                      href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with
+                      gradient nano-grained structure at cryogenic temperature
+                    </a>
+                  </h3>
+                  <p class="paper-meta">
+                    <strong>Frontiers in Materials</strong> · <em>Yuhao Tao, Wenqiang Cheng, Wei Wang</em>
+                  </p>
+                  <div class="paper-actions">
+                    <button
+                      class="bib-btn"
+                      type="button"
+                      data-bib='@article{tao2023mea, title={Atomistic tensile deformation mechanisms in a CrCoNi medium-entropy alloy with gradient nano-grained structure at cryogenic temperature}, author={Tao, Yuhao and Cheng, Wenqiang and Wang, Wei}, journal={Frontiers in Materials}, year={2023}, doi={10.3389/fmats.2022.1118952}}'
+                    >
+                      Copy BibTeX
+                    </button>
+                    <a
+                      class="secondary-link"
+                      href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full"
+                      target="_blank"
+                      rel="noopener"
+                      >Read Paper</a
+                    >
+                  </div>
+                </article>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="research" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-label">Research</span>
+            <h2 class="section-title">Projects in medical robotics, sensing, and simulation.</h2>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card">
+              <div class="project-media">
+                <img src="images/bug.jpg" alt="Origami-bot project cover" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <div class="project-type">Medical Devices</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener"
+                    >Origami-bot</a
+                  >
+                </h3>
+                <div class="project-status">Paper under preparation</div>
+                <p class="summary">
+                  Magnetically navigable, pop-up-fabricated origami capsule robot with an onboard,
+                  frequency-reconfigurable 3D electronics component and signal source for channel
+                  probing and intestinal monitoring.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Structure Design</a></li>
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">3D Reconfigurable Electronics</a></li>
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">GHz Source Design</a></li>
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Pop-Up Fabrication</a></li>
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Magnetic Navigation</a></li>
+                  <li><a href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Magnet Dynamics</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Project Page</a>
+                  <a class="text-link" href="https://er1koenig.github.io/origamibot/" target="_blank" rel="noopener">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img src="images/bug.jpg" alt="Patch-bot project cover" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <div class="project-type">Medical Devices</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Patch-bot</a>
+                </h3>
+                <div class="project-status">Paper under preparation</div>
+                <p class="summary">
+                  Magnetic adhesive-patch capsule robot with onboard power, Bluetooth communication,
+                  and flexible temperature and pH sensors for convenient gastric-reflux diagnosis.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Adhesive Layer Design</a></li>
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Magnetic Layer Design</a></li>
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Embedded Calibration</a></li>
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">System Integration</a></li>
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Magnetic Navigation</a></li>
+                  <li><a href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">FPCB Sensor Calibration</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Project Page</a>
+                  <a class="text-link" href="https://er1koenig.github.io/patchbot/" target="_blank" rel="noopener">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <div class="thumb" id="thumb-cfd">
+                  <img src="images/cfd_cover.png" alt="Droplet Dynamics cover" class="cover" loading="lazy" />
+                  <video id="video-cfd" muted loop preload="metadata" playsinline>
+                    <source src="images/cfd_cover.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-type">Computational Mechanics</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/droplet-dynamics/" target="_blank" rel="noopener"
+                    >Droplet Dynamics</a
+                  >
+                </h3>
+                <p class="summary">
+                  Development of a simulation module for sub-Kolmogorov deformable droplets coupled
+                  with an in-house lattice–Boltzmann solver.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/droplet-dynamics/#error-scheme" target="_blank" rel="noopener">Geometry Error Correction</a></li>
+                  <li><a href="https://er1koenig.github.io/droplet-dynamics/" target="_blank" rel="noopener">Constant Load Cases</a></li>
+                  <li><a href="https://er1koenig.github.io/droplet-dynamics/" target="_blank" rel="noopener">Oblate Rising Bubble</a></li>
+                  <li><a href="https://er1koenig.github.io/droplet-dynamics/#bubble" target="_blank" rel="noopener">Isotropic Turbulence</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/droplet-dynamics/" target="_blank" rel="noopener">Project Page</a>
+                  <a class="text-link" href="data/bachelor_thesis.pdf" target="_blank" rel="noopener">Bachelor Thesis</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <div class="thumb" id="thumb-mdsim">
+                  <img src="images/mdsim_cover.png" alt="Atomistic Simulation of Alloy cover" class="cover" loading="lazy" />
+                  <video id="video-mdsim" muted loop preload="metadata" playsinline>
+                    <source src="images/mdsim_tensile_small.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-type">Computational Mechanics</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/MD-sim/" target="_blank" rel="noopener"
+                    >Atomistic Simulation of Alloy</a
+                  >
+                </h3>
+                <p class="summary">
+                  Atomistic simulation of a medium-entropy alloy with a gradient nano-grained structure
+                  under cryogenic-temperature tensile deformation.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/MD-sim/" target="_blank" rel="noopener">Voronoi Grain Initialization</a></li>
+                  <li><a href="https://er1koenig.github.io/MD-sim/" target="_blank" rel="noopener">Hetero-Deformation Hardening</a></li>
+                  <li><a href="https://er1koenig.github.io/MD-sim/#rotation" target="_blank" rel="noopener">Grain Rotation Estimation</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/MD-sim/" target="_blank" rel="noopener">Project Page</a>
+                  <a class="text-link" href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2022.1118952/full" target="_blank" rel="noopener">Paper</a>
+                  <a class="text-link" href="https://github.com/Er1koenig/MD-sim/blob/main/Rotation_new.m" target="_blank" rel="noopener">Code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img src="images/fesim_cover.png" alt="Finite Element Simulation of Sintering cover" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <div class="project-type">Computational Mechanics</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/FE-Sintering/" target="_blank" rel="noopener"
+                    >Finite Element Simulation of Sintering</a
+                  >
+                </h3>
+                <p class="summary">
+                  Abaqus models with custom UMAT scripts for flash and ultra-high-speed sintering,
+                  calibrated against experimental data.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/FE-Sintering/" target="_blank" rel="noopener">UMAT for Grain Growth</a></li>
+                  <li><a href="https://er1koenig.github.io/FE-Sintering/" target="_blank" rel="noopener">UHS Temperature Prediction</a></li>
+                  <li><a href="https://er1koenig.github.io/FE-Sintering/" target="_blank" rel="noopener">Damped-Newton Calibration</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/FE-Sintering/" target="_blank" rel="noopener">Project Page</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <div class="thumb" id="thumb-pf">
+                  <img src="images/pfsim_cover.png" alt="Phase Field Simulation of Sintering cover" class="cover" loading="lazy" />
+                  <video id="video-pf" muted loop preload="metadata" playsinline>
+                    <source src="images/pfsim_cover.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-type">Computational Mechanics</div>
+                <h3 class="project-title">
+                  <a href="https://er1koenig.github.io/PF-Sintering/" target="_blank" rel="noopener"
+                    >Phase Field Simulation of Sintering</a
+                  >
+                </h3>
+                <p class="summary">
+                  Phase-field study of solid-state sintering that visualises how neighbouring powder
+                  grains neck, densify, and rotate—revealing the microstructural physics of porosity
+                  loss.
+                </p>
+                <ul class="highlights">
+                  <li><a href="https://er1koenig.github.io/PF-Sintering/" target="_blank" rel="noopener">Phase-Field Modelling</a></li>
+                  <li><a href="https://er1koenig.github.io/PF-Sintering/#demo" target="_blank" rel="noopener">Multi-Grain Sintering Case</a></li>
+                </ul>
+                <div class="project-links">
+                  <a class="text-link" href="https://er1koenig.github.io/PF-Sintering/" target="_blank" rel="noopener">Project Page</a>
+                  <a class="text-link" href="https://github.com/Er1koenig/PF-Sintering/blob/main/original_script" target="_blank" rel="noopener">Code</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-label">Awards</span>
+            <h2 class="section-title">Selected honours and scholarships.</h2>
+          </div>
+
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <div class="stack">
+                <article class="award-card">
+                  <h3 class="award-title">
+                    <a href="data/bsc-transcript.pdf" target="_blank" rel="noopener"
+                      >Graduation <em>with distinction</em> — top 0.2%</a
+                    >
+                  </h3>
+                  <p class="award-meta"><strong>RWTH Aachen · B.Sc. Mechanical Engineering</strong></p>
+                </article>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-year">2022</div>
+              <div class="stack">
+                <article class="award-card">
+                  <h3 class="award-title">
+                    <a href="data/germany scholarship 2022_2023.pdf" target="_blank" rel="noopener"
+                      >Deutschlandstipendium (Germany Scholarship)</a
+                    >
+                  </h3>
+                  <p class="award-meta"><em>National merit-based scholarship</em></p>
+                </article>
+
+                <article class="award-card">
+                  <h3 class="award-title">
+                    <a href="data/dean's List 2020_2021.pdf" target="_blank" rel="noopener"
+                      >Dean’s List — top 5%</a
+                    >
+                  </h3>
+                  <p class="award-meta"><strong>RWTH Aachen · B.Sc. Mechanical Engineering</strong></p>
+                </article>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-year">2021</div>
+              <div class="stack">
+                <article class="award-card">
+                  <h3 class="award-title">
+                    <a href="data/dean's list 2019_2020.pdf" target="_blank" rel="noopener"
+                      >Dean’s List — top 5%</a
+                    >
+                  </h3>
+                  <p class="award-meta"><strong>RWTH Aachen · B.Sc. Mechanical Engineering</strong></p>
+                </article>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-year">2020</div>
+              <div class="stack">
+                <article class="award-card">
+                  <h3 class="award-title">
+                    <a href="data/germany scholarship 2020_2021.pdf" target="_blank" rel="noopener"
+                      >Deutschlandstipendium (Germany Scholarship)</a
+                    >
+                  </h3>
+                  <p class="award-meta"><em>National merit-based scholarship</em></p>
+                </article>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>TAO Yuhao</div>
+        <div>Medical Devices · Robotics · Computational Mechanics</div>
       </div>
-    </section>
-
-    <!-- awards -->
-    <section id="awards" class="container" style="margin-top:2rem;">
-      <h2 class="section-title">Awards</h2>
-      <ul class="timeline">
-        <li>
-          <span class="year">2023</span>
-          <div class="pub-card">
-            <a href="data/bsc-transcript.pdf"><h4>Graduation <em>with distinction</em> — top 0.2%</h4></a>
-            <p><strong>RWTH&nbsp;Aachen · B.Sc.&nbsp;Mechanical&nbsp;Engineering</strong></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2022</span>
-          <div class="pub-card">
-            <a href="data/germany scholarship 2022_2023.pdf"><h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
-            <p><em>National merit-based scholarship</em></p>
-          </div>
-          <div class="pub-card">
-            <a href="data/dean's List 2020_2021.pdf"><h4>Dean’s&nbsp;List&nbsp;—&nbsp;top 5 %</h4></a>
-            <p><strong>RWTH&nbsp;Aachen · B.Sc.&nbsp;Mechanical&nbsp;Engineering</strong></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2021</span>
-          <div class="pub-card">
-            <a href="data/dean's list 2019_2020.pdf"><h4>Dean’s&nbsp;List&nbsp;—&nbsp;top 5 %</h4></a>
-            <p><strong>RWTH&nbsp;Aachen · B.Sc.&nbsp;Mechanical&nbsp;Engineering</strong></p>
-          </div>
-        </li>
-        <li>
-          <span class="year">2020</span>
-          <div class="pub-card" style="margin-top:.8rem">
-            <a href="data/germany scholarship 2020_2021.pdf"><h4>Deutschland­stipendium (Germany Scholarship)</h4></a>
-            <p><em>National merit-based scholarship</em></p>
-          </div>
-        </li>
-      </ul>
-    </section>
+    </footer>
 
     <script>
-      // Elevation on scroll
-      const onScrollShadow = () => document.body.classList.toggle('scrolled', window.scrollY > 4);
-      window.addEventListener('scroll', onScrollShadow); onScrollShadow();
+      const header = document.getElementById("site-header");
+      const nav = document.getElementById("top-nav");
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = Array.from(document.querySelectorAll("#top-nav .nav-link"));
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
 
-      // Scroll-Spy for active link（限定 top-nav）
-      const links = [...document.querySelectorAll('#top-nav .nav-link')];
-      const sections = [...document.querySelectorAll('section[id]')].sort((a, b) => a.offsetTop - b.offsetTop);
-      function onScroll() {
-        const pos = window.scrollY + 120;
-        let cur = sections[0];
-        for (const s of sections) { if (pos >= s.offsetTop) cur = s; else break; }
-        links.forEach(a => a.classList.toggle('active', a.hash.slice(1) === cur.id));
-      }
-      window.addEventListener('scroll', onScroll); onScroll();
+      const syncHeader = () => {
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      };
 
-      // 缩略图悬停播放视频（移动端不触发 hover，不影响）
-      document.querySelectorAll('.thumb').forEach(thumb => {
-        const video = thumb.querySelector('video');
-        if (!video) return;
-        video.setAttribute('playsinline','');
-        thumb.addEventListener('mouseenter', () => {
-          thumb.classList.add('hovering');
-          video.currentTime = 0;
-          video.play().catch(()=>{});
+      const syncActiveLink = () => {
+        const position = window.scrollY + 120;
+        let currentId = sections[0]?.id || "";
+        sections.forEach((section) => {
+          if (position >= section.offsetTop) currentId = section.id;
         });
-        thumb.addEventListener('mouseleave', () => {
-          thumb.classList.remove('hovering');
-          video.pause();
-          video.currentTime = 0;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+        });
+      };
+
+      const closeMenu = () => {
+        nav.classList.remove("open");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      };
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen = nav.classList.toggle("open");
+          menuToggle.classList.toggle("active", isOpen);
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      document.addEventListener("click", (event) => {
+        if (window.innerWidth > 720) return;
+        if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+          closeMenu();
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 720) closeMenu();
+      });
+
+      window.addEventListener("scroll", () => {
+        syncHeader();
+        syncActiveLink();
+      });
+
+      syncHeader();
+      syncActiveLink();
+
+      const canHoverVideo = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      if (canHoverVideo) {
+        document.querySelectorAll(".thumb").forEach((thumb) => {
+          const video = thumb.querySelector("video");
+          if (!video) return;
+
+          thumb.addEventListener("mouseenter", () => {
+            thumb.classList.add("hovering");
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          });
+
+          thumb.addEventListener("mouseleave", () => {
+            thumb.classList.remove("hovering");
+            video.pause();
+            video.currentTime = 0;
+          });
+        });
+      }
+
+      document.querySelectorAll(".bib-btn").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const raw = button.dataset.bib || "";
+          const text = raw.replace(/\s+/g, " ").trim();
+          const original = button.textContent;
+
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch (error) {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          }
+
+          button.textContent = "Copied";
+          setTimeout(() => {
+            button.textContent = original;
+          }, 1400);
         });
       });
     </script>
-
-    <script>
-      // === Single Button Theme Switcher (☀︎ → ☾ → ◐ → ☀︎) ===
-      (function(){
-        const docEl = document.documentElement;
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        const btn = document.getElementById('theme-btn');
-        const ico = document.getElementById('theme-ico');
-        const STORAGE_KEY = 'theme'; // 'light' | 'dark' | 'auto'
-
-        const chars = { light: '☀︎', dark: '☾', auto: '◐' };
-        const titles = {
-          light: 'Theme: Light',
-          dark:  'Theme: Dark',
-          auto:  'Theme: Auto (follows system)'
-        };
-
-        function setIcon(mode){
-          if (!ico || !btn) return;
-          ico.textContent = chars[mode];
-          btn.setAttribute('aria-label', titles[mode] + ' (click to change)');
-          btn.setAttribute('title', titles[mode]);
-          btn.dataset.mode = mode;
-        }
-
-        function applyTheme(mode, persist = true){
-          const isDark = (mode === 'dark') || (mode === 'auto' && prefersDark.matches);
-          docEl.classList.toggle('dark', isDark);
-          setIcon(mode);
-          if (persist) localStorage.setItem(STORAGE_KEY, mode);
-        }
-
-        function nextMode(cur){
-          if (cur === 'light') return 'dark';
-          if (cur === 'dark')  return 'auto';
-          return 'light'; // auto -> light
-        }
-
-        // 初始：从本地读取，默认 light（显示太阳）
-        const saved = localStorage.getItem(STORAGE_KEY) || 'light';
-        applyTheme(saved, false);
-
-        // 点击循环切换
-        if (btn){
-          btn.addEventListener('click', () => {
-            const cur = btn.dataset.mode || saved || 'light';
-            applyTheme(nextMode(cur));
-          });
-        }
-
-        // 系统主题变化时，若处于 auto 则跟随
-        prefersDark.addEventListener('change', () => {
-          const cur = localStorage.getItem(STORAGE_KEY) || 'light';
-          if (cur === 'auto') applyTheme('auto', false);
-        });
-      })();
-    </script>
-
-    <script>
-      // === Mobile menu toggle ===
-      (function(){
-        const topNav = document.getElementById('top-nav');
-        const burger = document.getElementById('burger');
-        if (!topNav || !burger) return;
-
-        function closeMenu(){
-          topNav.classList.remove('open');
-          burger.classList.remove('active');
-          burger.setAttribute('aria-expanded','false');
-        }
-        function openMenu(){
-          topNav.classList.add('open');
-          burger.classList.add('active');
-          burger.setAttribute('aria-expanded','true');
-        }
-
-        burger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (topNav.classList.contains('open')) closeMenu(); else openMenu();
-        });
-
-        // 点击链接后关闭
-        topNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-        // 点击外部区域关闭
-        window.addEventListener('click', (e) => {
-          if (!topNav.contains(e.target) && !burger.contains(e.target)) closeMenu();
-        });
-        // 视口变化时复位
-        window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
-      })();
-    </script>
-
-    <div class="credit">
-      thanks for
-      <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">John Barron's template</a>
-    </div>
   </body>
 </html>
